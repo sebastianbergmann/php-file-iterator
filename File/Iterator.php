@@ -42,7 +42,8 @@
  */
 
 /**
- * FilterIterator implementation that filters files based on a list of suffixes.
+ * FilterIterator implementation that filters files based on prefix(es) and/or
+ * suffix(es). Hidden files and files from hidden directories are also filtered.
  *
  * @author    Sebastian Bergmann <sb@sebastian-bergmann.de>
  * @copyright 2009 Sebastian Bergmann <sb@sebastian-bergmann.de>
