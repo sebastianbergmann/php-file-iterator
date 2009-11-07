@@ -91,37 +91,53 @@ class File_Iterator extends FilterIterator
             return FALSE;
         }
 
-        if (!empty($this->prefixes)) {
-            $matched = FALSE;
+        return $this->acceptPrefix($filename) && $this->acceptSuffix($filename);
+    }
 
-            foreach ($this->prefixes as $prefix) {
-                if (strpos($filename, $prefix) === 0) {
-                    $matched = TRUE;
-                    break;
-                }
-            }
+    /**
+     * @param  string $filename
+     * @return boolean
+     * @since  Method available since Release 1.1.0
+     */
+    protected function acceptPrefix($filename)
+    {
+        if (empty($this->prefixes)) {
+            return TRUE;
+        }
 
-            if (!$matched) {
-                return FALSE;
+        $matched = FALSE;
+
+        foreach ($this->prefixes as $prefix) {
+            if (strpos($filename, $prefix) === 0) {
+                $matched = TRUE;
+                break;
             }
         }
 
-        if (!empty($this->suffixes)) {
-            $matched = FALSE;
+        return $matched;
+    }
 
-            foreach ($this->suffixes as $suffix) {
-                if (substr($filename, -1 * strlen($suffix)) == $suffix) {
-                    $matched = TRUE;
-                    break;
-                }
-            }
+    /**
+     * @param  string $filename
+     * @return boolean
+     * @since  Method available since Release 1.1.0
+     */
+    protected function acceptSuffix($filename)
+    {
+        if (empty($this->suffixes)) {
+            return TRUE;
+        }
 
-            if (!$matched) {
-                return FALSE;
+        $matched = FALSE;
+
+        foreach ($this->suffixes as $suffix) {
+            if (substr($filename, -1 * strlen($suffix)) == $suffix) {
+                $matched = TRUE;
+                break;
             }
         }
 
-        return TRUE;
+        return $matched;
     }
 }
 ?>
