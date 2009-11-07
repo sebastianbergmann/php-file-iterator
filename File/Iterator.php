@@ -85,12 +85,11 @@ class File_Iterator extends FilterIterator
      */
     public function accept()
     {
-        $filename = $this->getInnerIterator()->current()->getFilename();
+        $current  = $this->getInnerIterator()->current();
+        $filename = $current->getFilename();
 
         if (strpos($filename, '.') === 0 ||
-            preg_match(
-              '=/\.[^/]*/=',
-              $this->getInnerIterator()->current()->getPathname())) {
+            preg_match('=/\.[^/]*/=', $current->getPathname())) {
             return FALSE;
         }
 
