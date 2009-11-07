@@ -88,6 +88,7 @@ class File_Iterator extends FilterIterator
         $current  = $this->getInnerIterator()->current();
         $filename = $current->getFilename();
 
+        // Filter files in hidden directories.
         if (strpos($filename, '.') === 0 ||
             preg_match('=/\.[^/]*/=', $current->getPathname())) {
             return FALSE;
