@@ -54,6 +54,9 @@
  */
 class File_Iterator extends FilterIterator
 {
+    const PREFIX = 0;
+    const SUFFIX = 1;
+
     /**
      * @var array
      */
@@ -101,20 +104,7 @@ class File_Iterator extends FilterIterator
      */
     protected function acceptPrefix($filename)
     {
-        if (empty($this->prefixes)) {
-            return TRUE;
-        }
-
-        $matched = FALSE;
-
-        foreach ($this->prefixes as $prefix) {
-            if (strpos($filename, $prefix) === 0) {
-                $matched = TRUE;
-                break;
-            }
-        }
-
-        return $matched;
+        return $this->acceptSubString($filename, $this->prefixes, self::PREFIX);
     }
 
     /**
@@ -124,14 +114,28 @@ class File_Iterator extends FilterIterator
      */
     protected function acceptSuffix($filename)
     {
-        if (empty($this->suffixes)) {
+        return $this->acceptSubString($filename, $this->suffixes, self::SUFFIX);
+    }
+
+    /**
+     * @param  string  $filename
+     * @param  array   $subString
+     * @param  integer $type
+     * @return boolean
+     * @since  Method available since Release 1.1.0
+     */
+    protected function acceptSubString($filename, array $subStrings, $type)
+    {
+        if (empty($subStrings)) {
             return TRUE;
         }
 
         $matched = FALSE;
 
-        foreach ($this->suffixes as $suffix) {
-            if (substr($filename, -1 * strlen($suffix)) == $suffix) {
+        foreach ($subStrings as $string) {
+            if (($type == self::PREFIX && strpos($filename, $string) === 0) ||
+                ($type == self::SUFFIX &&
+                 substr($filename, -1 * strlen($string)) == $string)) {
                 $matched = TRUE;
                 break;
             }
