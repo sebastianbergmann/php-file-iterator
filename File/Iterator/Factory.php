@@ -42,7 +42,9 @@
  */
 
 /**
- * 
+ * Factory Method implementation that creates a File_Iterator that operates on
+ * an AppendIterator that contains an RecursiveDirectoryIterator for each given
+ * path.
  *
  * @author    Sebastian Bergmann <sb@sebastian-bergmann.de>
  * @copyright 2009 Sebastian Bergmann <sb@sebastian-bergmann.de>
