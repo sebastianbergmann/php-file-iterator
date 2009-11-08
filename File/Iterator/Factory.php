@@ -62,7 +62,7 @@ class File_Iterator_Factory
      * @param  array        $exclude
      * @return File_Iterator
      */
-    public function getFileIterator($paths, $suffixes = '', $prefixes = '', array $exclude = array())
+    public static function getFileIterator($paths, $suffixes = '', $prefixes = '', array $exclude = array())
     {
         if (is_string($paths)) {
             $paths = array($paths);
