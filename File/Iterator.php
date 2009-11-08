@@ -82,7 +82,7 @@ class File_Iterator extends FilterIterator
     {
         $this->prefixes = $prefixes;
         $this->suffixes = $suffixes;
-        $this->exclude  = $exclude;
+        $this->exclude  = array_map('realpath', $exclude);
 
         parent::__construct($iterator);
     }
