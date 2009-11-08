@@ -63,7 +63,7 @@ class File_Iterator extends FilterIterator
     protected $suffixes = array();
 
     /**
-     * @var string
+     * @var array
      */
     protected $prefixes = array();
 
