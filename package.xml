@@ -31,6 +31,11 @@
  <contents>
   <dir name="/">
    <dir name="File">
+    <dir name="Iterator">
+     <file baseinstalldir="/" name="Factory.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+    </dir>
     <file baseinstalldir="/" name="Iterator.php" role="php">
      <tasks:replace from="@package_version@" to="version" type="package-info" />
     </file>
