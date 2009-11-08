@@ -90,5 +90,33 @@ class File_Iterator_Factory
 
         return new File_Iterator($pathIterator, $suffixes, $prefixes, $exclude);
     }
+
+    /**
+     * @param  array|string $paths
+     * @param  array|string $suffixes
+     * @param  array|string $prefixes
+     * @param  array        $exclude
+     * @return array
+     */
+    public static function getFilesAsArray($paths, $suffixes = '', $prefixes = '', array $exclude = array())
+    {
+        $result = array();
+
+        $iterator = self::getFileIterator(
+          $paths, $suffixes, $prefixes, $exclude
+        );
+
+        foreach ($iterator as $file) {
+            $result[] = $file->getRealPath();
+        }
+
+        foreach ($paths as $path) {
+            if (is_file($path)) {
+                $result[] = realpath($path);
+            }
+        }
+
+        return $result;
+    }
 }
 ?>
