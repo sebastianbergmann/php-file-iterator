@@ -68,14 +68,21 @@ class File_Iterator extends FilterIterator
     protected $prefixes = array();
 
     /**
+     * @var array
+     */
+    protected $exclude = array();
+
+    /**
      * @param  Iterator $iterator
      * @param  array    $suffixes
      * @param  array    $prefixes
+     * @param  array    $exclude
      */
-    public function __construct(Iterator $iterator, array $suffixes = array(), array $prefixes = array())
+    public function __construct(Iterator $iterator, array $suffixes = array(), array $prefixes = array(), array $exclude = array())
     {
         $this->prefixes = $prefixes;
         $this->suffixes = $suffixes;
+        $this->exclude  = $exclude;
 
         parent::__construct($iterator);
     }
@@ -94,7 +101,25 @@ class File_Iterator extends FilterIterator
             return FALSE;
         }
 
-        return $this->acceptPrefix($filename) && $this->acceptSuffix($filename);
+        return $this->acceptPath($current->getRealPath()) &&
+               $this->acceptPrefix($filename) &&
+               $this->acceptSuffix($filename);
+    }
+
+    /**
+     * @param  string $path
+     * @return boolean
+     * @since  Method available since Release 1.1.0
+     */
+    protected function acceptPath($path)
+    {
+        foreach ($this->exclude as $exclude) {
+            if (strpos($path, $exclude) === 0) {
+                return FALSE;
+            }
+        }
+
+        return TRUE;
     }
 
     /**
