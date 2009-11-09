@@ -41,6 +41,8 @@
  * @since     File available since Release 1.1.0
  */
 
+require_once 'File/Iterator.php';
+
 /**
  * Factory Method implementation that creates a File_Iterator that operates on
  * an AppendIterator that contains an RecursiveDirectoryIterator for each given
