@@ -71,11 +71,19 @@ class File_Iterator_Factory
         }
 
         if (is_string($prefixes)) {
-            $prefixes = array($prefixes);
+            if ($prefixes != '') {
+                $prefixes = array($prefixes);
+            } else {
+                $prefixes = array();
+            }
         }
 
         if (is_string($suffixes)) {
-            $suffixes = array($suffixes);
+            if ($suffixes != '') {
+                $suffixes = array($suffixes);
+            } else {
+                $suffixes = array();
+            }
         }
 
         $pathIterator = new AppendIterator;
