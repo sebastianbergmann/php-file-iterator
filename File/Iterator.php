@@ -97,7 +97,7 @@ class File_Iterator extends FilterIterator
 
         // Filter files in hidden directories.
         if (strpos($filename, '.') === 0 ||
-            preg_match('=/\.[^/]*/=', $current->getPathname())) {
+            preg_match('=/\.[^/]*/=', $current->getRealPath())) {
             return FALSE;
         }
 
