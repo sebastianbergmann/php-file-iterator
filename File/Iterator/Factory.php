@@ -116,10 +116,6 @@ class File_Iterator_Factory
      */
     public static function getFilesAsArray($paths, $suffixes = '', $prefixes = '', array $exclude = array())
     {
-        if (is_string($paths)) {
-            $paths = array($paths);
-        }
-
         $result = array();
 
         $iterator = self::getFileIterator(
