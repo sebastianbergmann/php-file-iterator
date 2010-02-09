@@ -73,16 +73,23 @@ class File_Iterator extends FilterIterator
     protected $exclude = array();
 
     /**
+     * @var string
+     */
+    protected $basepath;
+
+    /**
      * @param  Iterator $iterator
      * @param  array    $suffixes
      * @param  array    $prefixes
      * @param  array    $exclude
+     * @param  string   $basepath
      */
-    public function __construct(Iterator $iterator, array $suffixes = array(), array $prefixes = array(), array $exclude = array())
+    public function __construct(Iterator $iterator, array $suffixes = array(), array $prefixes = array(), array $exclude = array(), $basepath = NULL)
     {
         $this->prefixes = $prefixes;
         $this->suffixes = $suffixes;
         $this->exclude  = array_map('realpath', $exclude);
+        $this->basepath = $basepath;
 
         parent::__construct($iterator);
     }
@@ -94,6 +101,10 @@ class File_Iterator extends FilterIterator
     {
         $current  = $this->getInnerIterator()->current();
         $filename = $current->getFilename();
+
+        if ($this->basepath !== NULL) {
+            $filename = str_replace($this->basepath, '', $filename);
+        }
 
         // Filter files in hidden directories.
         if (strpos($filename, '.') === 0 ||
