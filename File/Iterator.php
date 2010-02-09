@@ -101,18 +101,18 @@ class File_Iterator extends FilterIterator
     {
         $current  = $this->getInnerIterator()->current();
         $filename = $current->getFilename();
+        $realpath = $current->getRealPath();
 
         if ($this->basepath !== NULL) {
-            $filename = str_replace($this->basepath, '', $filename);
+            $realpath = str_replace($this->basepath, '', $realpath);
         }
 
         // Filter files in hidden directories.
-        if (strpos($filename, '.') === 0 ||
-            preg_match('=/\.[^/]*/=', $current->getRealPath())) {
+        if (preg_match('=/\.[^/]*/=', $realpath)) {
             return FALSE;
         }
 
-        return $this->acceptPath($current->getRealPath()) &&
+        return $this->acceptPath($realpath) &&
                $this->acceptPrefix($filename) &&
                $this->acceptSuffix($filename);
     }
