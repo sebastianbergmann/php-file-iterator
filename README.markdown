@@ -15,9 +15,9 @@ The PEAR channel (`pear.phpunit.de`) that is used to distribute File_Iterator ne
 This has to be done only once. Now the PEAR Installer can be used to install packages from the PHPUnit channel:
 
     sb@vmware ~ % pear install phpunit/File_Iterator
-    downloading File_Iterator-1.1.0.tgz ...
-    Starting to download File_Iterator-1.1.0.tgz (3,181 bytes)
-    ....done: 3,181 bytes
-    install ok: channel://pear.phpunit.de/File_Iterator-1.1.0
+    downloading File_Iterator-1.1.1.tgz ...
+    Starting to download File_Iterator-1.1.1.tgz (3,173 bytes)
+    ....done: 3,173 bytes
+    install ok: channel://pear.phpunit.de/File_Iterator-1.1.1
 
 After the installation you can find the File_Iterator source files inside your local PEAR directory; the path is usually `/usr/lib/php/File`.
