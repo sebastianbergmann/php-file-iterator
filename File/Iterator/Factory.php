@@ -70,6 +70,15 @@ class File_Iterator_Factory
             $paths = array($paths);
         }
 
+        $allPaths = array();
+        foreach ($paths as $path) {
+            if ($locals = glob($path, GLOB_ONLYDIR)) {
+                $allPaths = array_merge($allPaths, $locals);
+            } else {
+                $allPaths[] = $path;
+            }
+        }
+
         if (is_string($prefixes)) {
             if ($prefixes != '') {
                 $prefixes = array($prefixes);
@@ -88,7 +97,7 @@ class File_Iterator_Factory
 
         $iterator = new AppendIterator;
 
-        foreach ($paths as $path) {
+        foreach ($allPaths as $path) {
             if (is_dir($path)) {
                 $iterator->append(
                   new File_Iterator(
