@@ -86,9 +86,23 @@ class File_Iterator extends FilterIterator
      */
     public function __construct(Iterator $iterator, array $suffixes = array(), array $prefixes = array(), array $exclude = array(), $basepath = NULL)
     {
+        $exclude = array_map('realpath', $exclude);
+
+        if ($basepath !== NULL) {
+            $basepath = realpath($basepath);
+        }
+
+        if ($basepath === FALSE) {
+            $basepath = NULL;
+        } else {
+            foreach ($exclude as &$_exclude) {
+                $_exclude = str_replace($basepath, '', $_exclude);
+            }
+        }
+
         $this->prefixes = $prefixes;
         $this->suffixes = $suffixes;
-        $this->exclude  = array_map('realpath', $exclude);
+        $this->exclude  = $exclude;
         $this->basepath = $basepath;
 
         parent::__construct($iterator);
