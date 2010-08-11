@@ -138,11 +138,9 @@ class File_Iterator extends FilterIterator
      */
     protected function acceptPath($path)
     {
-        if (is_dir($path)) {
-            foreach ($this->exclude as $exclude) {
-                if (strpos($path, $exclude) === 0) {
-                    return FALSE;
-                }
+        foreach ($this->exclude as $exclude) {
+            if (strpos($path, $exclude) === 0) {
+                return FALSE;
             }
         }
 
