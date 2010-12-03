@@ -1,0 +1,7 @@
+<project name="php-file-iterator" default="phpab" basedir=".">
+ <target name="phpab">
+  <exec executable="phpab">
+   <arg line='-o File/Iterator/Autoload.php -c -t File/Iterator/Autoload.php.in --indent "          " File' />
+  </exec>
+ </target>
+</project>
