@@ -41,7 +41,7 @@
  * @since     File available since Release 1.3.0
  */
 
-function file_iterator_autoload($class) {
+function file_iterator_autoload($class = NULL) {
     static $classes = NULL;
     static $path = NULL;
 
@@ -52,6 +52,16 @@ function file_iterator_autoload($class) {
         );
 
         $path = dirname(dirname(__FILE__));
+    }
+
+    if ($class === NULL) {
+        $result = array();
+
+        foreach ($classes as $file) {
+            $result[] = $path . $file;
+        }
+
+        return $result;
     }
 
     $cn = strtolower($class);
