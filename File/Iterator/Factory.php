@@ -153,7 +153,7 @@ class File_Iterator_Factory
             }
         }
 
-        return $result;
+        return array_unique($result);
     }
 }
 ?>
