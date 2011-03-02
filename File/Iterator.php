@@ -86,7 +86,7 @@ class File_Iterator extends FilterIterator
      */
     public function __construct(Iterator $iterator, array $suffixes = array(), array $prefixes = array(), array $exclude = array(), $basepath = NULL)
     {
-        $exclude = array_map('realpath', $exclude);
+        $exclude = array_filter(array_map('realpath', $exclude));
 
         if ($basepath !== NULL) {
             $basepath = realpath($basepath);
