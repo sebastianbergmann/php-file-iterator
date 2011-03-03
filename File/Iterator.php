@@ -194,4 +194,3 @@ class File_Iterator extends FilterIterator
         return $matched;
     }
 }
-?>

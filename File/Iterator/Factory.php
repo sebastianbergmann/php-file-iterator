@@ -216,4 +216,3 @@ class File_Iterator_Factory
         return $common;
     }
 }
-?>
