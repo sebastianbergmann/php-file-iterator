@@ -160,6 +160,7 @@ class File_Iterator_Factory
             return array(
               'commonPath' => self::getCommonPath($files),
               'files'      => $files
+            );
         } else {
             return $files;
         }
