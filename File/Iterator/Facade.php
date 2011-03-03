@@ -38,85 +38,121 @@
  * @author    Sebastian Bergmann <sb@sebastian-bergmann.de>
  * @copyright 2009-2011 Sebastian Bergmann <sb@sebastian-bergmann.de>
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @since     File available since Release 1.1.0
+ * @since     File available since Release 1.3.0
  */
 
 require_once 'File/Iterator.php';
 
 /**
- * Factory Method implementation that creates a File_Iterator that operates on
- * an AppendIterator that contains an RecursiveDirectoryIterator for each given
- * path.
+ * Façade implementation that uses File_Iterator_Factory to create a
+ * File_Iterator that operates on an AppendIterator that contains an
+ * RecursiveDirectoryIterator for each given path. The list of unique
+ * files is returned as an array.
  *
  * @author    Sebastian Bergmann <sb@sebastian-bergmann.de>
  * @copyright 2009-2011 Sebastian Bergmann <sb@sebastian-bergmann.de>
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version   Release: @package_version@
  * @link      http://github.com/sebastianbergmann/php-file-iterator/tree
- * @since     Class available since Release 1.1.0
+ * @since     Class available since Release 1.3.0
  */
-class File_Iterator_Factory
+class File_Iterator_Facade
 {
     /**
      * @param  array|string $paths
      * @param  array|string $suffixes
      * @param  array|string $prefixes
      * @param  array        $exclude
-     * @return AppendIterator
+     * @param  boolean      $commonPath
+     * @return array
      */
-    public function getFileIterator($paths, $suffixes = '', $prefixes = '', array $exclude = array())
+    public function getFilesAsArray($paths, $suffixes = '', $prefixes = '', array $exclude = array(), $commonPath = FALSE)
     {
         if (is_string($paths)) {
             $paths = array($paths);
         }
 
-        $_paths = array();
+        $factory  = new File_Iterator_Factory;
+        $iterator = $factory->getFileIterator(
+          $paths, $suffixes, $prefixes, $exclude
+        );
+
+        $files = array();
+
+        foreach ($iterator as $file) {
+            $file = $file->getRealPath();
+
+            if ($file) {
+                $files[] = $file;
+            }
+        }
 
         foreach ($paths as $path) {
-            if ($locals = glob($path, GLOB_ONLYDIR)) {
-                $_paths = array_merge($_paths, $locals);
-            } else {
-                $_paths[] = $path;
+            if (is_file($path)) {
+                $files[] = realpath($path);
             }
         }
 
-        $paths = $_paths;
-        unset($_paths);
+        $files = array_unique($files);
 
-        if (is_string($prefixes)) {
-            if ($prefixes != '') {
-                $prefixes = array($prefixes);
-            } else {
-                $prefixes = array();
+        if ($commonPath) {
+            return array(
+              'commonPath' => $this->getCommonPath($files),
+              'files'      => $files
+            );
+        } else {
+            return $files;
+        }
+    }
+
+    /**
+     * Returns the common path of a set of files.
+     *
+     * @param  array $files
+     * @return string
+     */
+    protected function getCommonPath(array $files)
+    {
+        $count = count($files);
+
+        if ($count == 1) {
+            return dirname($files[0]) . DIRECTORY_SEPARATOR;
+        }
+
+        $_files = array();
+
+        foreach ($files as $file) {
+            $_files[] = $_fileParts = explode(DIRECTORY_SEPARATOR, $file);
+
+            if (empty($_fileParts[0])) {
+                $_fileParts[0] = DIRECTORY_SEPARATOR;
             }
         }
 
-        if (is_string($suffixes)) {
-            if ($suffixes != '') {
-                $suffixes = array($suffixes);
-            } else {
-                $suffixes = array();
+        $common = '';
+        $done   = FALSE;
+        $j      = 0;
+        $count--;
+
+        while (!$done) {
+            for ($i = 0; $i < $count; $i++) {
+                if ($_files[$i][$j] != $_files[$i+1][$j]) {
+                    $done = TRUE;
+                    break;
+                }
             }
+
+            if (!$done) {
+                $common .= $_files[0][$j];
+
+                if ($j > 0) {
+                    $common .= DIRECTORY_SEPARATOR;
+                }
+            }
+
+            $j++;
         }
 
-        $iterator = new AppendIterator;
-
-        foreach ($paths as $path) {
-            if (is_dir($path)) {
-                $iterator->append(
-                  new File_Iterator(
-                    new RecursiveIteratorIterator(
-                      new RecursiveDirectoryIterator($path)
-                    ),
-                    $suffixes,
-                    $prefixes,
-                    $exclude,
-                    $path
-                  )
-                );
-            }
-        }
-
-        return $iterator;
+        return $common;
     }
 }

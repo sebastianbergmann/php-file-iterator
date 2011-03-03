@@ -48,6 +48,7 @@ function file_iterator_autoload($class = NULL) {
     if ($classes === NULL) {
         $classes = array(
           'file_iterator' => '/Iterator.php',
+          'file_iterator_facade' => '/Iterator/Facade.php',
           'file_iterator_factory' => '/Iterator/Factory.php'
         );
 
