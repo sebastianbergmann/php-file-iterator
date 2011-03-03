@@ -94,6 +94,7 @@ class File_Iterator_Facade
         }
 
         $files = array_unique($files);
+        sort($files);
 
         if ($commonPath) {
             return array(
