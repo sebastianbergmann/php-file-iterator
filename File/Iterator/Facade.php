@@ -41,8 +41,6 @@
  * @since     File available since Release 1.3.0
  */
 
-require_once 'File/Iterator.php';
-
 /**
  * Façade implementation that uses File_Iterator_Factory to create a
  * File_Iterator that operates on an AppendIterator that contains an
