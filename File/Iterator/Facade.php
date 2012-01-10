@@ -114,6 +114,10 @@ class File_Iterator_Facade
     {
         $count = count($files);
 
+        if ($count == 0) {
+            return '';
+        }
+
         if ($count == 1) {
             return dirname($files[0]) . DIRECTORY_SEPARATOR;
         }
