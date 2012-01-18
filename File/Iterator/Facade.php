@@ -156,6 +156,6 @@ class File_Iterator_Facade
             $j++;
         }
 
-        return $common;
+        return DIRECTORY_SEPARATOR . $common;
     }
 }
