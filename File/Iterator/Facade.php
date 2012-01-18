@@ -146,7 +146,10 @@ class File_Iterator_Facade
             }
 
             if (!$done) {
-                $common .= $_files[0][$j];
+                
+                if (isset($_files[$i])) {
+    				$common .= $_files[$i][$j];
+				}
 
                 if ($j > 0) {
                     $common .= DIRECTORY_SEPARATOR;
