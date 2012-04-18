@@ -64,22 +64,7 @@ class File_Iterator_Factory
      */
     public function getFileIterator($paths, $suffixes = '', $prefixes = '', array $exclude = array())
     {
-        if (is_string($paths)) {
-            $paths = array($paths);
-        }
-
-        $_paths = array();
-
-        foreach ($paths as $path) {
-            if ($locals = glob($path, GLOB_ONLYDIR)) {
-                $_paths = array_merge($_paths, $locals);
-            } else {
-                $_paths[] = $path;
-            }
-        }
-
-        $paths = $_paths;
-        unset($_paths);
+        $paths = $this->expandAntPaths($paths);
 
         if (is_string($prefixes)) {
             if ($prefixes != '') {
@@ -98,23 +83,68 @@ class File_Iterator_Factory
         }
 
         $iterator = new AppendIterator;
+        foreach ($paths as $regex => $path) {
+            if (!is_dir($path)) {
+                continue;
+            }
 
-        foreach ($paths as $path) {
-            if (is_dir($path)) {
-                $iterator->append(
-                  new File_Iterator(
-                    new RecursiveIteratorIterator(
-                      new RecursiveDirectoryIterator($path)
-                    ),
+            $current_path_iterator = new RecursiveIteratorIterator(
+                new RecursiveDirectoryIterator($path)
+            );
+
+            if (is_string($regex)) {
+                $current_path_iterator = new RegexIterator($current_path_iterator, $regex);
+            }
+
+            $iterator->append(
+                new File_Iterator(
+                    $current_path_iterator,
                     $suffixes,
                     $prefixes,
                     $exclude,
                     $path
-                  )
-                );
-            }
+                )
+            );
         }
+
 
         return $iterator;
     }
+
+    protected function expandAntPath($path) {
+        if (($star_position = strpos($path, '*')) === false) {
+            return array('path' => $path);
+        }
+
+        $trimmed_path = substr($path, 0, $star_position - 1);
+        $regex_path = str_replace('\\', '/', $path);
+        // replace ** with stub first so single star replacements can be evaluated correctly
+        $regex_path = str_replace('**', '__double_star__', $regex_path);
+        // expand single star only within directory
+        $regex_path = '=' . preg_replace('/\*[^*]/', '[^/]*', $regex_path) . '=';
+        // expand double star to recursive directories
+        $regex_path = str_replace('__double_star__', '.*', $regex_path);
+        return array('path' => $trimmed_path, 'regex' => $regex_path);
+    }
+
+    protected function expandAntPaths($paths)
+    {
+        if (is_string($paths)) {
+            $paths = array($paths);
+        }
+
+        $_paths = array();
+
+        foreach ($paths as $path) {
+            $result = $this->expandAntPath($path);
+            if (isset($result['regex'])) {
+                $_paths[$result['regex']] = $result['path'];
+            } else {
+                $_paths[] = $result['path'];
+            }
+        }
+
+        return $_paths;
+    }
+
 }
