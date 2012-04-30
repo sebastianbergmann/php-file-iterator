@@ -37,7 +37,7 @@
  * @package   File
  * @author    Sebastian Bergmann <sb@sebastian-bergmann.de>
  * @copyright 2009-2012 Sebastian Bergmann <sb@sebastian-bergmann.de>
- * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @license   http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
  * @since     File available since Release 1.1.0
  */
 
@@ -48,7 +48,7 @@
  *
  * @author    Sebastian Bergmann <sb@sebastian-bergmann.de>
  * @copyright 2009-2012 Sebastian Bergmann <sb@sebastian-bergmann.de>
- * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
+ * @license   http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
  * @version   Release: @package_version@
  * @link      http://github.com/sebastianbergmann/php-file-iterator/tree
  * @since     Class available since Release 1.1.0
