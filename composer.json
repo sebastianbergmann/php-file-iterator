@@ -1,0 +1,17 @@
+{
+    "name": "pear/File_Iterator",
+    "description": "FilterIterator implementation that filters files based on a list of suffixes.",
+    "license": "BSD",
+    "authors": [
+        {
+            "name": "Sebastian Bergmann",
+            "email": "sb@sebastian-bergmann.de"
+        }
+    ],
+    "require": {
+        "php": ">=5.2.7"
+    },
+    "autoload": {
+        "psr-0": { "File_Iterator": "" }
+    }
+}
