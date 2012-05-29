@@ -1,5 +1,5 @@
 {
-    "name": "pear/File_Iterator",
+    "name": "sebastianbergmann/php-file-iterator",
     "description": "FilterIterator implementation that filters files based on a list of suffixes.",
     "license": "BSD",
     "authors": [
