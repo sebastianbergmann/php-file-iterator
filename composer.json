@@ -22,9 +22,7 @@
         "bin-dir": "bin"
     },
     "autoload": {
-        "psr-0": {
-            "PHP_*": "phpunit"
-        }
+        "classmap": ["File/"]
     },
     "minimum-stability": "dev",
     "extra": {
