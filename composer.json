@@ -22,7 +22,10 @@
         "bin-dir": "bin"
     },
     "autoload": {
-        "classmap": ["File/"]
+        "psr-0": {
+            "File_Iterator": ""
+        },
+        "files": ["File/Iterator/Autoload.php"]
     },
     "minimum-stability": "dev",
     "extra": {
