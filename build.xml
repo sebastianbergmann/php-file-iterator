@@ -44,11 +44,10 @@
   <exec executable="phpab">
    <arg value="--output" />
    <arg path="File/Iterator/Autoload.php" />
-   <arg value="--compat" />
    <arg value="--template" />
    <arg path="File/Iterator/Autoload.php.in" />
    <arg value="--indent" />
-   <arg value="          " />
+   <arg value="            " />
    <arg path="File" />
   </exec>
  </target>

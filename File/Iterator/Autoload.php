@@ -41,35 +41,26 @@
  * @since     File available since Release 1.3.0
  */
 
-function file_iterator_autoload($class = NULL) {
-    static $classes = NULL;
-    static $path = NULL;
+spl_autoload_register(
+  function ($class)
+  {
+      static $classes = NULL;
+      static $path = NULL;
 
-    if ($classes === NULL) {
-        $classes = array(
-          'file_iterator' => '/Iterator.php',
-          'file_iterator_facade' => '/Iterator/Facade.php',
-          'file_iterator_factory' => '/Iterator/Factory.php'
-        );
+      if ($classes === NULL) {
+          $classes = array(
+            'file_iterator' => '/Iterator.php',
+            'file_iterator_facade' => '/Iterator/Facade.php',
+            'file_iterator_factory' => '/Iterator/Factory.php'
+          );
 
-        $path = dirname(dirname(__FILE__));
-    }
+          $path = dirname(dirname(__FILE__));
+      }
 
-    if ($class === NULL) {
-        $result = array(__FILE__);
+      $cn = strtolower($class);
 
-        foreach ($classes as $file) {
-            $result[] = $path . $file;
-        }
-
-        return $result;
-    }
-
-    $cn = strtolower($class);
-
-    if (isset($classes[$cn])) {
-        require $path . $classes[$cn];
-    }
-}
-
-spl_autoload_register('file_iterator_autoload');
+      if (isset($classes[$cn])) {
+          require $path . $classes[$cn];
+      }
+  }
+);
