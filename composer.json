@@ -15,8 +15,6 @@
             "role": "lead"
         }
     ],
-    "version": "1.3.2",
-    "time": "2012-09-22",
     "support": {
         "issues": "https://github.com/sebastianbergmann/php-file-iterator/issues",
         "irc": "irc://irc.freenode.net/phpunit"
@@ -25,8 +23,8 @@
         "php": ">=5.2.7"
     },
     "autoload": {
-        "files": [
-            "File/Iterator/Autoload.php"
+        "classmap": [
+            "File/"
         ]
     },
     "include-path": [
