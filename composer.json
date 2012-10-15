@@ -6,7 +6,7 @@
         "iterator",
         "filesystem"
     ],
-    "homepage": "http://www.phpunit.de/",
+    "homepage": "https://github.com/sebastianbergmann/php-file-iterator/",
     "license": "BSD-3-Clause",
     "authors": [
         {
