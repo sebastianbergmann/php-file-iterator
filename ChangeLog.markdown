@@ -3,6 +3,11 @@ File_Iterator 1.3
 
 This is the list of changes for the File_Iterator 1.3 release series.
 
+File_Iterator 1.3.4
+-------------------
+
+* Symlinks are now followed.
+
 File_Iterator 1.3.3
 -------------------
 
