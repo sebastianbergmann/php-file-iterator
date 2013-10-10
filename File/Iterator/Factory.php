@@ -104,7 +104,7 @@ class File_Iterator_Factory
                 $iterator->append(
                   new File_Iterator(
                     new RecursiveIteratorIterator(
-                      new RecursiveDirectoryIterator($path)
+                      new RecursiveDirectoryIterator($path, RecursiveDirectoryIterator::FOLLOW_SYMLINKS)
                     ),
                     $suffixes,
                     $prefixes,
