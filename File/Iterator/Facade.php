@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of the File_Iterator.
+ * This file is part of the File_Iterator package.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
