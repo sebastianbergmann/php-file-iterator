@@ -35,18 +35,8 @@ class File_Iterator_Factory
             $paths = array($paths);
         }
 
-        $_paths = array();
-
-        foreach ($paths as $path) {
-            if ($locals = glob($path, GLOB_ONLYDIR)) {
-                $_paths = array_merge($_paths, $locals);
-            } else {
-                $_paths[] = $path;
-            }
-        }
-
-        $paths = $_paths;
-        unset($_paths);
+        $paths   = $this->getPathsAfterResolvingWildcards($paths);
+        $exclude = $this->getPathsAfterResolvingWildcards($exclude);
 
         if (is_string($prefixes)) {
             if ($prefixes != '') {
@@ -83,5 +73,24 @@ class File_Iterator_Factory
         }
 
         return $iterator;
+    }
+
+    /**
+     * @param  array $paths
+     * @return array
+     */
+    protected function getPathsAfterResolvingWildcards(array $paths)
+    {
+        $_paths = array();
+
+        foreach ($paths as $path) {
+            if ($locals = glob($path, GLOB_ONLYDIR)) {
+                $_paths = array_merge($_paths, $locals);
+            } else {
+                $_paths[] = $path;
+            }
+        }
+
+        return $_paths;
     }
 }
