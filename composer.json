@@ -24,7 +24,8 @@
     },
     "autoload": {
         "classmap": [
-            "File/"
+            "src/"
         ]
     }
 }
+
