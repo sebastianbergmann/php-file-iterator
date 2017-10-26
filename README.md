@@ -10,3 +10,6 @@ If you only need this library during development, for instance to run your proje
 
     composer require --dev phpunit/php-file-iterator
 
+## Run test case
+
+    php Tests/test.php
