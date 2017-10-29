@@ -40,6 +40,11 @@ class File_Iterator extends FilterIterator
     protected $basepath;
 
     /**
+     * @var bool
+     */
+    private $excludeAll = FALSE;
+
+    /**
      * @param Iterator $iterator
      * @param array    $suffixes
      * @param array    $prefixes
@@ -58,6 +63,11 @@ class File_Iterator extends FilterIterator
             $basepath = NULL;
         } else {
             foreach ($exclude as &$_exclude) {
+                if (self::isExcludeParentOrSame($_exclude, $basepath)) {
+                    $this->excludeAll = TRUE;
+                    continue;
+                }
+
                 $_exclude = str_replace($basepath, '', $_exclude);
             }
         }
@@ -100,6 +110,10 @@ class File_Iterator extends FilterIterator
      */
     protected function acceptPath($path)
     {
+        if ($this->excludeAll) {
+            return FALSE;
+        }
+
         foreach ($this->exclude as $exclude) {
             if (strpos($path, $exclude) === 0) {
                 return FALSE;
@@ -154,5 +168,20 @@ class File_Iterator extends FilterIterator
         }
 
         return $matched;
+    }
+
+    private static function isExcludeParentOrSame($exclude, $basepath)
+    {
+        if ($exclude === $basepath) {
+            return TRUE;
+        }
+
+        $excludeWithSeparator = $exclude . DIRECTORY_SEPARATOR;
+        $prefixLength = strlen($excludeWithSeparator);
+        if ($excludeWithSeparator === substr($basepath, 0, $prefixLength)) {
+            return TRUE;
+        }
+
+        return FALSE;
     }
 }
