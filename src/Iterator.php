@@ -59,6 +59,9 @@ class File_Iterator extends FilterIterator
         } else {
             foreach ($exclude as &$_exclude) {
                 $_exclude = str_replace($basepath, '', $_exclude);
+                if ($_exclude === '') {
+                    $_exclude = '/';
+                }
             }
         }
 
