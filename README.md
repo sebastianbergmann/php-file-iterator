@@ -1,4 +1,4 @@
-# File_Iterator
+# php-file-iterator
 
 ## Installation
 
