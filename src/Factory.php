@@ -80,9 +80,9 @@ class File_Iterator_Factory
 
         foreach ($paths as $path) {
             if ($locals = glob($path, GLOB_ONLYDIR)) {
-                $_paths = array_merge($_paths, $locals);
+                $_paths = array_merge($_paths, array_map('realpath', $locals));
             } else {
-                $_paths[] = $path;
+                $_paths[] = realpath($path);
             }
         }
 
