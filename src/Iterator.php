@@ -36,11 +36,6 @@ class Iterator extends \FilterIterator
     private $basePath;
 
     /**
-     * @var bool
-     */
-    private $excludeAll = false;
-
-    /**
      * @param Iterator $iterator
      * @param array    $suffixes
      * @param array    $prefixes
@@ -59,12 +54,7 @@ class Iterator extends \FilterIterator
             $basePath = null;
         } else {
             foreach ($exclude as &$_exclude) {
-                if ($this->isExcludeParentOrSame($_exclude, $basePath)) {
-                    $this->excludeAll = true;
-                    continue;
-                }
-
-                $_exclude = \str_replace($basePath, '', $_exclude);
+                $_exclude = \str_replace($basepath, '', $_exclude);
             }
         }
 
@@ -98,10 +88,6 @@ class Iterator extends \FilterIterator
 
     private function acceptPath(string $path): bool
     {
-        if ($this->excludeAll) {
-            return false;
-        }
-
         foreach ($this->exclude as $exclude) {
             if (\strpos($path, $exclude) === 0) {
                 return false;
@@ -139,16 +125,5 @@ class Iterator extends \FilterIterator
         }
 
         return $matched;
-    }
-
-    private function isExcludeParentOrSame(string $exclude, string $basePath): bool
-    {
-        if ($exclude === $basePath) {
-            return true;
-        }
-
-        $excludeWithSeparator = $exclude . DIRECTORY_SEPARATOR;
-
-        return 0 === \strpos($basePath, $excludeWithSeparator);
     }
 }
