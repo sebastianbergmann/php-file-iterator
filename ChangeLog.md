@@ -8,13 +8,15 @@ All notable changes to this project will be documented in this file. This projec
 
 * This component now uses namespaces
 
-### Fixed
-
-* Fixed [#30](https://github.com/sebastianbergmann/php-file-iterator/issues/30): Exclude is not considered if it is a parent of the base path
-
 ### Removed
 
 * This component is no longer supported on PHP 5.3, PHP 5.4, PHP 5.5, PHP 5.6, and PHP 7.0
+
+## [1.4.4] - 2017-11-27
+
+### Fixed
+
+* Fixed [#30](https://github.com/sebastianbergmann/php-file-iterator/issues/30): Exclude is not considered if it is a parent of the base path
 
 ## [1.4.3] - 2017-11-25
 
@@ -37,6 +39,7 @@ No changes
 * [Added support for wildcards (glob) in exclude](https://github.com/sebastianbergmann/php-file-iterator/pull/23)
 
 [2.0.0]: https://github.com/sebastianbergmann/php-file-iterator/compare/1.4...master
+[1.4.4]: https://github.com/sebastianbergmann/php-file-iterator/compare/1.4.3...1.4.4
 [1.4.3]: https://github.com/sebastianbergmann/php-file-iterator/compare/1.4.2...1.4.3
 [1.4.2]: https://github.com/sebastianbergmann/php-file-iterator/compare/1.4.1...1.4.2
 [1.4.1]: https://github.com/sebastianbergmann/php-file-iterator/compare/1.4.0...1.4.1
