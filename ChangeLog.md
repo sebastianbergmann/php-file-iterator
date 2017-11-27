@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file. This projec
 
 ## [1.4.3] - 2017-11-25
 
+### Fixed
+
 * Fixed [#34](https://github.com/sebastianbergmann/php-file-iterator/issues/34): Factory should use canonical directory names
 
 ## [1.4.2] - 2016-11-26
