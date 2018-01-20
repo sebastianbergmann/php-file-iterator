@@ -54,7 +54,7 @@ class Iterator extends \FilterIterator
             $basePath = null;
         } else {
             foreach ($exclude as &$_exclude) {
-                $_exclude = \str_replace($basepath, '', $_exclude);
+                $_exclude = \str_replace($basePath, '', $_exclude);
             }
         }
 
