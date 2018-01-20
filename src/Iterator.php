@@ -36,13 +36,13 @@ class Iterator extends \FilterIterator
     private $basePath;
 
     /**
-     * @param Iterator $iterator
-     * @param array    $suffixes
-     * @param array    $prefixes
-     * @param array    $exclude
-     * @param string   $basePath
+     * @param \Iterator $iterator
+     * @param array     $suffixes
+     * @param array     $prefixes
+     * @param array     $exclude
+     * @param string    $basePath
      */
-    public function __construct(Iterator $iterator, array $suffixes = [], array $prefixes = [], array $exclude = [], $basePath = null)
+    public function __construct(\Iterator $iterator, array $suffixes = [], array $prefixes = [], array $exclude = [], $basePath = null)
     {
         $exclude = \array_filter(\array_map('realpath', $exclude));
 
