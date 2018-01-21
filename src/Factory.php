@@ -56,8 +56,7 @@ class Factory
                         ),
                         $suffixes,
                         $prefixes,
-                        $exclude,
-                        $path
+                        $exclude
                     )
                 );
             }
