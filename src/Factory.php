@@ -52,7 +52,10 @@ class Factory
                 $iterator->append(
                     new Iterator(
                         new \RecursiveIteratorIterator(
-                            new \RecursiveDirectoryIterator($path, \RecursiveDirectoryIterator::FOLLOW_SYMLINKS)
+                            new \RecursiveDirectoryIterator(
+                                $path,
+                                \RecursiveDirectoryIterator::FOLLOW_SYMLINKS | \RecursiveDirectoryIterator::SKIP_DOTS
+                            )
                         ),
                         $suffixes,
                         $prefixes,
