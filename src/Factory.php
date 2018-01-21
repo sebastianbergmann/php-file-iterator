@@ -18,9 +18,9 @@ class Factory
      * @param array|string $prefixes
      * @param array        $exclude
      *
-     * @return \AppendIterator
+     * @return \Iterator
      */
-    public function getFileIterator($paths, $suffixes = '', $prefixes = '', array $exclude = []): \AppendIterator
+    public function getFileIterator($paths, $suffixes = '', $prefixes = '', array $exclude = []): \Iterator
     {
         if (\is_string($paths)) {
             $paths = [$paths];
@@ -50,19 +50,16 @@ class Factory
         foreach ($paths as $path) {
             if (\is_dir($path)) {
                 $iterator->append(
-                    new Iterator(
-                        new \RecursiveIteratorIterator(
-                            new \RecursiveDirectoryIterator($path, \RecursiveDirectoryIterator::FOLLOW_SYMLINKS)
-                        ),
-                        $suffixes,
-                        $prefixes,
-                        $exclude
+                    new \RecursiveIteratorIterator(
+                        new \RecursiveDirectoryIterator($path, \RecursiveDirectoryIterator::FOLLOW_SYMLINKS)
                     )
                 );
             }
         }
 
-        return $iterator;
+        $filteredIterator = new Iterator($iterator, $suffixes, $prefixes, $exclude);
+
+        return $filteredIterator;
     }
 
     protected function getPathsAfterResolvingWildcards(array $paths): array
