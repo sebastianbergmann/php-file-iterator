@@ -31,37 +31,18 @@ class Iterator extends \FilterIterator
     private $exclude = [];
 
     /**
-     * @var string
-     */
-    private $basePath;
-
-    /**
      * @param \Iterator $iterator
      * @param array     $suffixes
      * @param array     $prefixes
      * @param array     $exclude
-     * @param string    $basePath
      */
-    public function __construct(\Iterator $iterator, array $suffixes = [], array $prefixes = [], array $exclude = [], $basePath = null)
+    public function __construct(\Iterator $iterator, array $suffixes = [], array $prefixes = [], array $exclude = [])
     {
         $exclude = \array_filter(\array_map('realpath', $exclude));
-
-        if ($basePath !== null) {
-            $basePath = \realpath($basePath);
-        }
-
-        if ($basePath === false) {
-            $basePath = null;
-        } else {
-            foreach ($exclude as &$_exclude) {
-                $_exclude = \str_replace($basePath, '', $_exclude);
-            }
-        }
 
         $this->prefixes = $prefixes;
         $this->suffixes = $suffixes;
         $this->exclude  = $exclude;
-        $this->basePath = $basePath;
 
         parent::__construct($iterator);
     }
@@ -71,10 +52,6 @@ class Iterator extends \FilterIterator
         $current  = $this->getInnerIterator()->current();
         $filename = $current->getFilename();
         $realPath = $current->getRealPath();
-
-        if ($this->basePath !== null) {
-            $realPath = \str_replace($this->basePath, '', $realPath);
-        }
 
         // Filter files in hidden directories.
         if (\preg_match('=/\.[^/]*/=', $realPath)) {
