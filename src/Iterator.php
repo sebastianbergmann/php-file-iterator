@@ -44,7 +44,7 @@ class Iterator extends \FilterIterator
      */
     public function __construct(\Iterator $iterator, array $suffixes = [], array $prefixes = [], array $exclude = [], $basePath = null)
     {
-        $exclude = \array_filter(\array_map('realpath', $exclude));
+        $exclude = \array_map('realpath', $exclude);
 
         if ($basePath !== null) {
             $basePath = \realpath($basePath);
@@ -60,7 +60,7 @@ class Iterator extends \FilterIterator
 
         $this->prefixes = $prefixes;
         $this->suffixes = $suffixes;
-        $this->exclude  = $exclude;
+        $this->exclude  = \array_filter($exclude);
         $this->basePath = $basePath;
 
         parent::__construct($iterator);
