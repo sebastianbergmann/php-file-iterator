@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file. This projec
 
 ## [2.0.0] - YYYY-MM-DD
 
+### Fixed
+
+* Fixed [#30](https://github.com/sebastianbergmann/php-file-iterator/issues/30): Exclude is not considered if it is a parent of the base path
+
 ### Changed
 
 * This component now uses namespaces
