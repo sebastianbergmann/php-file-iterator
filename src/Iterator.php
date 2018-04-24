@@ -97,6 +97,7 @@ class Iterator extends \FilterIterator
                 ($type === self::SUFFIX &&
                  \substr($filename, -1 * \strlen($string)) === $string)) {
                 $matched = true;
+
                 break;
             }
         }

@@ -91,6 +91,7 @@ class Facade
             for ($i = 0; $i < $count; $i++) {
                 if ($_files[$i][$j] != $_files[$i + 1][$j]) {
                     $done = true;
+
                     break;
                 }
             }
