@@ -60,8 +60,7 @@ class File_Iterator_Factory
                     ),
                     $suffixes,
                     $prefixes,
-                    $exclude,
-                    $path
+                    $exclude
                   )
                 );
             }
