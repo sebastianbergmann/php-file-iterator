@@ -51,8 +51,9 @@ class Factory
             if (\is_dir($path)) {
                 $iterator->append(
                     new Iterator(
+                        $path,
                         new \RecursiveIteratorIterator(
-                            new \RecursiveDirectoryIterator($path, \RecursiveDirectoryIterator::FOLLOW_SYMLINKS)
+                            new \RecursiveDirectoryIterator($path, \RecursiveDirectoryIterator::FOLLOW_SYMLINKS | \RecursiveDirectoryIterator::SKIP_DOTS)
                         ),
                         $suffixes,
                         $prefixes,

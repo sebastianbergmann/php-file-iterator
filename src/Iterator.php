@@ -16,6 +16,11 @@ class Iterator extends \FilterIterator
     const SUFFIX = 1;
 
     /**
+     * @var string
+     */
+    private $basePath;
+
+    /**
      * @var array
      */
     private $suffixes = [];
@@ -31,18 +36,18 @@ class Iterator extends \FilterIterator
     private $exclude = [];
 
     /**
+     * @param string    $basePath
      * @param \Iterator $iterator
      * @param array     $suffixes
      * @param array     $prefixes
      * @param array     $exclude
      */
-    public function __construct(\Iterator $iterator, array $suffixes = [], array $prefixes = [], array $exclude = [])
+    public function __construct(string $basePath, \Iterator $iterator, array $suffixes = [], array $prefixes = [], array $exclude = [])
     {
-        $exclude = \array_filter(\array_map('realpath', $exclude));
-
+        $this->basePath = \realpath($basePath);
         $this->prefixes = $prefixes;
         $this->suffixes = $suffixes;
-        $this->exclude  = $exclude;
+        $this->exclude  = \array_filter(\array_map('realpath', $exclude));
 
         parent::__construct($iterator);
     }
@@ -53,11 +58,6 @@ class Iterator extends \FilterIterator
         $filename = $current->getFilename();
         $realPath = $current->getRealPath();
 
-        // Filter files in hidden directories.
-        if (\preg_match('=/\.[^/]*/=', $realPath)) {
-            return false;
-        }
-
         return $this->acceptPath($realPath) &&
                $this->acceptPrefix($filename) &&
                $this->acceptSuffix($filename);
@@ -65,6 +65,11 @@ class Iterator extends \FilterIterator
 
     private function acceptPath(string $path): bool
     {
+        // Filter files in hidden directories by checking path that is relative to the base path.
+        if (\preg_match('=/\.[^/]*/=', \str_replace($this->basePath, '', $path))) {
+            return false;
+        }
+
         foreach ($this->exclude as $exclude) {
             if (\strpos($path, $exclude) === 0) {
                 return false;
