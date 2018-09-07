@@ -11,6 +11,9 @@ namespace SebastianBergmann\FileIterator;
 
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \SebastianBergmann\FileIterator\Factory
+ */
 class FactoryTest extends TestCase
 {
     /**
