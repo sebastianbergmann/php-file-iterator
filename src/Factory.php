@@ -74,7 +74,10 @@ class Factory
             if ($locals = \glob($path, GLOB_ONLYDIR)) {
                 $_paths = \array_merge($_paths, \array_map('\realpath', $locals));
             } else {
-                $_paths[] = \realpath($path);
+                $realpath = \realpath($path);
+                if (false !== $realpath) {
+                    $_paths[] = $realpath;
+                }
             }
         }
 
