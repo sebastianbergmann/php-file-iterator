@@ -1,9 +1,14 @@
 <?php
-
+/*
+ * This file is part of php-file-iterator.
+ *
+ * (c) Sebastian Bergmann <sebastian@phpunit.de>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 namespace SebastianBergmann\FileIterator;
 
-use org\bovigo\vfs\vfsStream;
-use org\bovigo\vfs\vfsStreamDirectory;
 use PHPUnit\Framework\TestCase;
 
 class FactoryTest extends TestCase
@@ -18,25 +23,25 @@ class FactoryTest extends TestCase
      */
     private $factory;
 
-    public function setUp()
+    public function setUp(): void
     {
-        $this->root = __DIR__;
+        $this->root    = __DIR__;
         $this->factory = new Factory;
     }
 
-    public function testFindFilesInTestDirectory()
+    public function testFindFilesInTestDirectory(): void
     {
         $iterator = $this->factory->getFileIterator($this->root, 'Test.php');
-        $files = \iterator_to_array($iterator);
+        $files    = \iterator_to_array($iterator);
 
-        $this->assertGreaterThanOrEqual(1, count($files));
+        $this->assertGreaterThanOrEqual(1, \count($files));
     }
 
-    public function testFindFilesWithExcludedNonExistingSubdirectory()
+    public function testFindFilesWithExcludedNonExistingSubdirectory(): void
     {
         $iterator = $this->factory->getFileIterator($this->root, 'Test.php', '', [$this->root . '/nonExistingDir']);
-        $files = \iterator_to_array($iterator);
+        $files    = \iterator_to_array($iterator);
 
-        $this->assertGreaterThanOrEqual(1, count($files));
+        $this->assertGreaterThanOrEqual(1, \count($files));
     }
 }
