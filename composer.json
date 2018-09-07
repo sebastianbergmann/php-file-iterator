@@ -21,6 +21,9 @@
     "require": {
         "php": "^7.1"
     },
+    "require-dev": {
+        "phpunit/phpunit": "^7.1"
+    },
     "autoload": {
         "classmap": [
             "src/"
@@ -32,4 +35,3 @@
         }
     }
 }
-
