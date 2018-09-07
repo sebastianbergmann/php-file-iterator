@@ -23,7 +23,7 @@ class FactoryTest extends TestCase
      */
     private $factory;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->root    = __DIR__;
         $this->factory = new Factory;
