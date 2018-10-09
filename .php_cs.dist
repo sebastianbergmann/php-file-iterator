@@ -154,7 +154,13 @@ return PhpCsFixer\Config::create()
             'ternary_to_null_coalescing' => true,
             'trim_array_spaces' => true,
             'unary_operator_spaces' => true,
-            'visibility_required' => true,
+            'visibility_required' => [
+                'elements' => [
+                    'const',
+                    'method',
+                    'property',
+                ],
+            ],
             'void_return' => true,
             'whitespace_after_comma_in_array' => true,
         ]
