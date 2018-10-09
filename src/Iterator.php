@@ -52,7 +52,7 @@ class Iterator extends \FilterIterator
         parent::__construct($iterator);
     }
 
-    public function accept()
+    public function accept(): bool
     {
         $current  = $this->getInnerIterator()->current();
         $filename = $current->getFilename();
