@@ -12,8 +12,8 @@ namespace SebastianBergmann\FileIterator;
 
 class Iterator extends \FilterIterator
 {
-    const PREFIX = 0;
-    const SUFFIX = 1;
+    public const PREFIX = 0;
+    public const SUFFIX = 1;
 
     /**
      * @var string
