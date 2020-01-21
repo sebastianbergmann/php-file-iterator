@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.0.0] - 2020-02-07
+
+### Removed
+
+* This component is no longer supported on PHP 7.1 and PHP 7.2
+
 ## [2.0.2] - 2018-09-13
 
 ### Fixed
@@ -60,6 +66,7 @@ No changes
 
 * [Added support for wildcards (glob) in exclude](https://github.com/sebastianbergmann/php-file-iterator/pull/23)
 
+[3.0.0]: https://github.com/sebastianbergmann/php-file-iterator/compare/2.0.2...master
 [2.0.2]: https://github.com/sebastianbergmann/php-file-iterator/compare/2.0.1...2.0.2
 [2.0.1]: https://github.com/sebastianbergmann/php-file-iterator/compare/2.0.0...2.0.1
 [2.0.0]: https://github.com/sebastianbergmann/php-file-iterator/compare/1.4...master

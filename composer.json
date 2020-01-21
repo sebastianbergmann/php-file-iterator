@@ -18,11 +18,20 @@
     "support": {
         "issues": "https://github.com/sebastianbergmann/php-file-iterator/issues"
     },
+    "config": {
+        "platform": {
+            "php": "7.3.0"
+        },
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
-        "php": "^7.1"
+        "php": "^7.3"
     },
     "require-dev": {
-        "phpunit/phpunit": "^7.1"
+        "phpunit/phpunit": "^9.0"
     },
     "autoload": {
         "classmap": [
@@ -31,7 +40,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "2.0.x-dev"
+            "dev-master": "3.0-dev"
         }
     }
 }
