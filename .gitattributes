@@ -1,4 +1,9 @@
-/tools      export-ignore
-/tools/*    binary
+/.*          export-ignore
+/tools/      export-ignore
+/tests/      export-ignore
+/build.xml   export-ignore
+/phpunit.xml export-ignore
+
+/tools/* binary
 
 *.php diff=php
