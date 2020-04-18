@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \SebastianBergmann\FileIterator\Factory
  */
-class FactoryTest extends TestCase
+final class FactoryTest extends TestCase
 {
     /**
      * @var string
@@ -35,7 +35,7 @@ class FactoryTest extends TestCase
     public function testFindFilesInTestDirectory(): void
     {
         $iterator = $this->factory->getFileIterator($this->root, 'Test.php');
-        $files    = \iterator_to_array($iterator);
+        $files    = \iterator_to_array($iterator, false);
 
         $this->assertGreaterThanOrEqual(1, \count($files));
     }
@@ -43,7 +43,7 @@ class FactoryTest extends TestCase
     public function testFindFilesWithExcludedNonExistingSubdirectory(): void
     {
         $iterator = $this->factory->getFileIterator($this->root, 'Test.php', '', [$this->root . '/nonExistingDir']);
-        $files    = \iterator_to_array($iterator);
+        $files    = \iterator_to_array($iterator, false);
 
         $this->assertGreaterThanOrEqual(1, \count($files));
     }
