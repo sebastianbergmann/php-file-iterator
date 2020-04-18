@@ -1,6 +1,6 @@
-<?php
+<?php declare(strict_types=1);
 /*
- * This file is part of php-file-iterator.
+ * This file is part of phpunit/php-file-iterator.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *

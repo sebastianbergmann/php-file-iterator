@@ -1,18 +1,18 @@
-<?php
+<?php declare(strict_types=1);
 /*
- * This file is part of php-file-iterator.
+ * This file is part of phpunit/php-file-iterator.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace SebastianBergmann\FileIterator;
 
 class Iterator extends \FilterIterator
 {
     public const PREFIX = 0;
+
     public const SUFFIX = 1;
 
     /**
@@ -35,13 +35,6 @@ class Iterator extends \FilterIterator
      */
     private $exclude = [];
 
-    /**
-     * @param string    $basePath
-     * @param \Iterator $iterator
-     * @param array     $suffixes
-     * @param array     $prefixes
-     * @param array     $exclude
-     */
     public function __construct(string $basePath, \Iterator $iterator, array $suffixes = [], array $prefixes = [], array $exclude = [])
     {
         $this->basePath = \realpath($basePath);

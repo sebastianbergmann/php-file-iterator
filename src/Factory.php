@@ -1,13 +1,12 @@
-<?php
+<?php declare(strict_types=1);
 /*
- * This file is part of php-file-iterator.
+ * This file is part of phpunit/php-file-iterator.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace SebastianBergmann\FileIterator;
 
 class Factory
@@ -16,9 +15,6 @@ class Factory
      * @param array|string $paths
      * @param array|string $suffixes
      * @param array|string $prefixes
-     * @param array        $exclude
-     *
-     * @return \AppendIterator
      */
     public function getFileIterator($paths, $suffixes = '', $prefixes = '', array $exclude = []): \AppendIterator
     {
@@ -71,7 +67,7 @@ class Factory
         $_paths = [];
 
         foreach ($paths as $path) {
-            if ($locals = \glob($path, GLOB_ONLYDIR)) {
+            if ($locals = \glob($path, \GLOB_ONLYDIR)) {
                 $_paths = \array_merge($_paths, \array_map('\realpath', $locals));
             } else {
                 $_paths[] = \realpath($path);
