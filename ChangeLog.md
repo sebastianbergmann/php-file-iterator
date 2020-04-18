@@ -12,19 +12,19 @@ All notable changes to this project will be documented in this file. This projec
 
 ### Fixed
 
-* Fixed [#48](https://github.com/sebastianbergmann/php-file-iterator/issues/48): Excluding an array that contains false ends up excluding the current working directory
+* [#48](https://github.com/sebastianbergmann/php-file-iterator/issues/48): Excluding an array that contains false ends up excluding the current working directory
 
 ## [2.0.1] - 2018-06-11
 
 ### Fixed
 
-* Fixed [#46](https://github.com/sebastianbergmann/php-file-iterator/issues/46): Regression with hidden parent directory
+* [#46](https://github.com/sebastianbergmann/php-file-iterator/issues/46): Regression with hidden parent directory
 
 ## [2.0.0] - 2018-05-28
 
 ### Fixed
 
-* Fixed [#30](https://github.com/sebastianbergmann/php-file-iterator/issues/30): Exclude is not considered if it is a parent of the base path
+* [#30](https://github.com/sebastianbergmann/php-file-iterator/issues/30): Exclude is not considered if it is a parent of the base path
 
 ### Changed
 
@@ -38,19 +38,19 @@ All notable changes to this project will be documented in this file. This projec
 
 ### Fixed
 
-* Fixed [#37](https://github.com/sebastianbergmann/php-file-iterator/issues/37): Regression caused by fix for [#30](https://github.com/sebastianbergmann/php-file-iterator/issues/30)
+* [#37](https://github.com/sebastianbergmann/php-file-iterator/issues/37): Regression caused by fix for [#30](https://github.com/sebastianbergmann/php-file-iterator/issues/30)
 
 ## [1.4.4] - 2017-11-27
 
 ### Fixed
 
-* Fixed [#30](https://github.com/sebastianbergmann/php-file-iterator/issues/30): Exclude is not considered if it is a parent of the base path
+* [#30](https://github.com/sebastianbergmann/php-file-iterator/issues/30): Exclude is not considered if it is a parent of the base path
 
 ## [1.4.3] - 2017-11-25
 
 ### Fixed
 
-* Fixed [#34](https://github.com/sebastianbergmann/php-file-iterator/issues/34): Factory should use canonical directory names
+* [#34](https://github.com/sebastianbergmann/php-file-iterator/issues/34): Factory should use canonical directory names
 
 ## [1.4.2] - 2016-11-26
 
@@ -64,7 +64,7 @@ No changes
 
 ### Added
 
-* [Added support for wildcards (glob) in exclude](https://github.com/sebastianbergmann/php-file-iterator/pull/23)
+* [#23](https://github.com/sebastianbergmann/php-file-iterator/pull/23): Added support for wildcards (glob) in exclude
 
 [3.0.0]: https://github.com/sebastianbergmann/php-file-iterator/compare/2.0.2...3.0.0
 [2.0.2]: https://github.com/sebastianbergmann/php-file-iterator/compare/2.0.1...2.0.2
