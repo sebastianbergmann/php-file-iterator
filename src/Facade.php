@@ -9,6 +9,16 @@
  */
 namespace SebastianBergmann\FileIterator;
 
+use const DIRECTORY_SEPARATOR;
+use function array_unique;
+use function count;
+use function dirname;
+use function explode;
+use function is_file;
+use function is_string;
+use function realpath;
+use function sort;
+
 class Facade
 {
     /**
@@ -18,7 +28,7 @@ class Facade
      */
     public function getFilesAsArray($paths, $suffixes = '', $prefixes = '', array $exclude = [], bool $commonPath = false): array
     {
-        if (\is_string($paths)) {
+        if (is_string($paths)) {
             $paths = [$paths];
         }
 
@@ -35,13 +45,13 @@ class Facade
         }
 
         foreach ($paths as $path) {
-            if (\is_file($path)) {
-                $files[] = \realpath($path);
+            if (is_file($path)) {
+                $files[] = realpath($path);
             }
         }
 
-        $files = \array_unique($files);
-        \sort($files);
+        $files = array_unique($files);
+        sort($files);
 
         if ($commonPath) {
             return [
@@ -55,23 +65,23 @@ class Facade
 
     protected function getCommonPath(array $files): string
     {
-        $count = \count($files);
+        $count = count($files);
 
         if ($count === 0) {
             return '';
         }
 
         if ($count === 1) {
-            return \dirname($files[0]) . \DIRECTORY_SEPARATOR;
+            return dirname($files[0]) . DIRECTORY_SEPARATOR;
         }
 
         $_files = [];
 
         foreach ($files as $file) {
-            $_files[] = $_fileParts = \explode(\DIRECTORY_SEPARATOR, $file);
+            $_files[] = $_fileParts = explode(DIRECTORY_SEPARATOR, $file);
 
             if (empty($_fileParts[0])) {
-                $_fileParts[0] = \DIRECTORY_SEPARATOR;
+                $_fileParts[0] = DIRECTORY_SEPARATOR;
             }
         }
 
@@ -93,13 +103,13 @@ class Facade
                 $common .= $_files[0][$j];
 
                 if ($j > 0) {
-                    $common .= \DIRECTORY_SEPARATOR;
+                    $common .= DIRECTORY_SEPARATOR;
                 }
             }
 
             $j++;
         }
 
-        return \DIRECTORY_SEPARATOR . $common;
+        return DIRECTORY_SEPARATOR . $common;
     }
 }

@@ -9,7 +9,17 @@
  */
 namespace SebastianBergmann\FileIterator;
 
-class Iterator extends \FilterIterator
+use function array_filter;
+use function array_map;
+use function preg_match;
+use function realpath;
+use function str_replace;
+use function strlen;
+use function strpos;
+use function substr;
+use FilterIterator;
+
+class Iterator extends FilterIterator
 {
     public const PREFIX = 0;
 
@@ -37,10 +47,10 @@ class Iterator extends \FilterIterator
 
     public function __construct(string $basePath, \Iterator $iterator, array $suffixes = [], array $prefixes = [], array $exclude = [])
     {
-        $this->basePath = \realpath($basePath);
+        $this->basePath = realpath($basePath);
         $this->prefixes = $prefixes;
         $this->suffixes = $suffixes;
-        $this->exclude  = \array_filter(\array_map('realpath', $exclude));
+        $this->exclude  = array_filter(array_map('realpath', $exclude));
 
         parent::__construct($iterator);
     }
@@ -59,12 +69,12 @@ class Iterator extends \FilterIterator
     private function acceptPath(string $path): bool
     {
         // Filter files in hidden directories by checking path that is relative to the base path.
-        if (\preg_match('=/\.[^/]*/=', \str_replace($this->basePath, '', $path))) {
+        if (preg_match('=/\.[^/]*/=', str_replace($this->basePath, '', $path))) {
             return false;
         }
 
         foreach ($this->exclude as $exclude) {
-            if (\strpos($path, $exclude) === 0) {
+            if (strpos($path, $exclude) === 0) {
                 return false;
             }
         }
@@ -91,9 +101,9 @@ class Iterator extends \FilterIterator
         $matched = false;
 
         foreach ($subStrings as $string) {
-            if (($type === self::PREFIX && \strpos($filename, $string) === 0) ||
+            if (($type === self::PREFIX && strpos($filename, $string) === 0) ||
                 ($type === self::SUFFIX &&
-                 \substr($filename, -1 * \strlen($string)) === $string)) {
+                 substr($filename, -1 * strlen($string)) === $string)) {
                 $matched = true;
 
                 break;
