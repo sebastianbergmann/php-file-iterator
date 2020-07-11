@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.0.4] - 2020-07-11
+
+### Fixed
+
+* [#67](https://github.com/sebastianbergmann/php-file-iterator/issues/67): `TypeError` in `SebastianBergmann\FileIterator\Iterator::accept()`
+
 ## [3.0.3] - 2020-06-26
 
 ### Added
@@ -84,6 +90,7 @@ No changes
 
 * [#23](https://github.com/sebastianbergmann/php-file-iterator/pull/23): Added support for wildcards (glob) in exclude
 
+[3.0.4]: https://github.com/sebastianbergmann/php-file-iterator/compare/3.0.3...3.0.4
 [3.0.3]: https://github.com/sebastianbergmann/php-file-iterator/compare/3.0.2...3.0.3
 [3.0.2]: https://github.com/sebastianbergmann/php-file-iterator/compare/3.0.1...3.0.2
 [3.0.1]: https://github.com/sebastianbergmann/php-file-iterator/compare/3.0.0...3.0.1

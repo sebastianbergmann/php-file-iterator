@@ -61,6 +61,10 @@ class Iterator extends FilterIterator
         $filename = $current->getFilename();
         $realPath = $current->getRealPath();
 
+        if ($realPath === false) {
+            return false;
+        }
+
         return $this->acceptPath($realPath) &&
                $this->acceptPrefix($filename) &&
                $this->acceptSuffix($filename);
