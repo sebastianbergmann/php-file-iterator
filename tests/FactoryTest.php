@@ -15,6 +15,8 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \SebastianBergmann\FileIterator\Factory
+ *
+ * @uses \SebastianBergmann\FileIterator\Iterator
  */
 final class FactoryTest extends TestCase
 {
