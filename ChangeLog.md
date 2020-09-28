@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.0.5] - 2020-09-28
+
+### Changed
+
+* Changed PHP version constraint in `composer.json` from `^7.3 || ^8.0` to `>=7.3`
+
 ## [3.0.4] - 2020-07-11
 
 ### Fixed
@@ -90,6 +96,7 @@ No changes
 
 * [#23](https://github.com/sebastianbergmann/php-file-iterator/pull/23): Added support for wildcards (glob) in exclude
 
+[3.0.5]: https://github.com/sebastianbergmann/php-file-iterator/compare/3.0.4...3.0.5
 [3.0.4]: https://github.com/sebastianbergmann/php-file-iterator/compare/3.0.3...3.0.4
 [3.0.3]: https://github.com/sebastianbergmann/php-file-iterator/compare/3.0.2...3.0.3
 [3.0.2]: https://github.com/sebastianbergmann/php-file-iterator/compare/3.0.1...3.0.2
