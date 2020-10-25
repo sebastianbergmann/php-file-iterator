@@ -44,7 +44,7 @@ jobs:
         run: ./tools/composer update --no-interaction --no-ansi --no-progress
 
       - name: Run vimeo/psalm
-        run: ./tools/psalm --no-progress --shepherd --show-info=false --stats
+        run: ./tools/psalm --config=.psalm/config.xml --no-progress --shepherd --show-info=false --stats
 
   backward-compatibility:
     name: Backward Compatibility
