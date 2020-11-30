@@ -19,10 +19,10 @@
         "issues": "https://github.com/sebastianbergmann/php-file-iterator/issues"
     },
     "require": {
-        "php": "^7.1"
+        "php": ">=7.1"
     },
     "require-dev": {
-        "phpunit/phpunit": "^7.1"
+        "phpunit/phpunit": "^8.5"
     },
     "autoload": {
         "classmap": [
