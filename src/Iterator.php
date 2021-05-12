@@ -25,25 +25,13 @@ class Iterator extends FilterIterator
 
     public const SUFFIX = 1;
 
-    /**
-     * @var string
-     */
-    private $basePath;
+    private string|false $basePath;
 
-    /**
-     * @var array
-     */
-    private $suffixes = [];
+    private array $suffixes;
 
-    /**
-     * @var array
-     */
-    private $prefixes = [];
+    private array $prefixes;
 
-    /**
-     * @var array
-     */
-    private $exclude = [];
+    private array $exclude;
 
     public function __construct(string $basePath, \Iterator $iterator, array $suffixes = [], array $prefixes = [], array $exclude = [])
     {
