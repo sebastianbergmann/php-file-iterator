@@ -14,8 +14,8 @@ use function array_map;
 use function preg_match;
 use function realpath;
 use function str_replace;
+use function str_starts_with;
 use function strlen;
-use function strpos;
 use function substr;
 use FilterIterator;
 
@@ -78,7 +78,7 @@ class Iterator extends FilterIterator
         }
 
         foreach ($this->exclude as $exclude) {
-            if (strpos($path, $exclude) === 0) {
+            if (str_starts_with($path, $exclude)) {
                 return false;
             }
         }
@@ -105,7 +105,7 @@ class Iterator extends FilterIterator
         $matched = false;
 
         foreach ($subStrings as $string) {
-            if (($type === self::PREFIX && strpos($filename, $string) === 0) ||
+            if (($type === self::PREFIX && str_starts_with($filename, $string)) ||
                 ($type === self::SUFFIX &&
                  substr($filename, -1 * strlen($string)) === $string)) {
                 $matched = true;
