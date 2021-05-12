@@ -13,10 +13,9 @@ use function array_filter;
 use function array_map;
 use function preg_match;
 use function realpath;
+use function str_ends_with;
 use function str_replace;
 use function str_starts_with;
-use function strlen;
-use function substr;
 use FilterIterator;
 
 class Iterator extends FilterIterator
@@ -94,8 +93,7 @@ class Iterator extends FilterIterator
 
         foreach ($subStrings as $string) {
             if (($type === self::PREFIX && str_starts_with($filename, $string)) ||
-                ($type === self::SUFFIX &&
-                 substr($filename, -1 * strlen($string)) === $string)) {
+                ($type === self::SUFFIX && str_ends_with($filename, $string))) {
                 $matched = true;
 
                 break;
