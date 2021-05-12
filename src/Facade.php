@@ -73,7 +73,7 @@ class Facade
         $_files = [];
 
         foreach ($files as $file) {
-            $_files[] = $_fileParts = explode(DIRECTORY_SEPARATOR, $file);
+            $_files[] = $_fileParts = explode(DIRECTORY_SEPARATOR, $file, 2);
 
             if (empty($_fileParts[0])) {
                 $_fileParts[0] = DIRECTORY_SEPARATOR;
