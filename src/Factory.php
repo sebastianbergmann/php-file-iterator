@@ -23,12 +23,7 @@ use RecursiveIteratorIterator;
 
 class Factory
 {
-    /**
-     * @param array|string $paths
-     * @param array|string $suffixes
-     * @param array|string $prefixes
-     */
-    public function getFileIterator($paths, $suffixes = '', $prefixes = '', array $exclude = []): AppendIterator
+    public function getFileIterator(array|string $paths, array|string $suffixes = '', array|string $prefixes = '', array $exclude = []): AppendIterator
     {
         if (is_string($paths)) {
             $paths = [$paths];

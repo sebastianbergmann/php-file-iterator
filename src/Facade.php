@@ -21,12 +21,7 @@ use function sort;
 
 class Facade
 {
-    /**
-     * @param array|string $paths
-     * @param array|string $suffixes
-     * @param array|string $prefixes
-     */
-    public function getFilesAsArray($paths, $suffixes = '', $prefixes = '', array $exclude = [], bool $commonPath = false): array
+    public function getFilesAsArray(array|string $paths, array|string $suffixes = '', array|string $prefixes = '', array $exclude = [], bool $commonPath = false): array
     {
         if (is_string($paths)) {
             $paths = [$paths];
