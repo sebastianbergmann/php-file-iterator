@@ -19,7 +19,7 @@ use function is_string;
 use function realpath;
 use function sort;
 
-class Facade
+final class Facade
 {
     public function getFilesAsArray(array|string $paths, array|string $suffixes = '', array|string $prefixes = '', array $exclude = [], bool $commonPath = false): array
     {
@@ -50,7 +50,7 @@ class Facade
 
         if ($commonPath) {
             return [
-                'commonPath' => $this->getCommonPath($files),
+                'commonPath' => $this->commonPath($files),
                 'files'      => $files,
             ];
         }
@@ -58,7 +58,7 @@ class Facade
         return $files;
     }
 
-    protected function getCommonPath(array $files): string
+    private function commonPath(array $files): string
     {
         $count = count($files);
 
