@@ -19,7 +19,7 @@ jobs:
       - name: Install PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 7.4
+          php-version: 8.0
           coverage: none
 
       - name: Run friendsofphp/php-cs-fixer
@@ -37,7 +37,7 @@ jobs:
       - name: Install PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 7.4
+          php-version: 8.0
           coverage: none
 
       - name: Update dependencies with composer
@@ -55,8 +55,6 @@ jobs:
       fail-fast: false
       matrix:
         php-version:
-          - "7.3"
-          - "7.4"
           - "8.0"
           - "8.1"
 
