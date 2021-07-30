@@ -38,6 +38,18 @@ All notable changes to this project will be documented in this file. This projec
 
 * This component is no longer supported on PHP 7.1 and PHP 7.2
 
+## [2.0.4] - 2021-07-19
+
+### Changed
+
+* Added `ReturnTypeWillChange` attribute to `SebastianBergmann\FileIterator\Iterator::accept()` because the return type of `\FilterIterator::accept()` will change in PHP 8.1
+
+## [2.0.3] - 2020-11-30
+
+### Changed
+
+* Changed PHP version constraint in `composer.json` from `^7.1` to `>=7.1`
+
 ## [2.0.2] - 2018-09-13
 
 ### Fixed
@@ -102,6 +114,8 @@ No changes
 [3.0.2]: https://github.com/sebastianbergmann/php-file-iterator/compare/3.0.1...3.0.2
 [3.0.1]: https://github.com/sebastianbergmann/php-file-iterator/compare/3.0.0...3.0.1
 [3.0.0]: https://github.com/sebastianbergmann/php-file-iterator/compare/2.0.2...3.0.0
+[2.0.4]: https://github.com/sebastianbergmann/php-file-iterator/compare/2.0.3...2.0.4
+[2.0.3]: https://github.com/sebastianbergmann/php-file-iterator/compare/2.0.2...2.0.3
 [2.0.2]: https://github.com/sebastianbergmann/php-file-iterator/compare/2.0.1...2.0.2
 [2.0.1]: https://github.com/sebastianbergmann/php-file-iterator/compare/2.0.0...2.0.1
 [2.0.0]: https://github.com/sebastianbergmann/php-file-iterator/compare/1.4...2.0.0
