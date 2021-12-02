@@ -38,6 +38,16 @@ All notable changes to this project will be documented in this file. This projec
 
 * This component is no longer supported on PHP 7.1 and PHP 7.2
 
+## [2.0.5] - 2021-12-02
+
+### Changed
+
+* [#73](https://github.com/sebastianbergmann/php-file-iterator/pull/73): Micro performance improvements on parsing paths
+
+### Fixed
+
+* [#74](https://github.com/sebastianbergmann/php-file-iterator/pull/74): Document return type of `SebastianBergmann\FileIterator\Iterator::accept()` so that Symfony's `DebugClassLoader` does not trigger a deprecation warning
+
 ## [2.0.4] - 2021-07-19
 
 ### Changed
@@ -113,12 +123,13 @@ No changes
 [3.0.3]: https://github.com/sebastianbergmann/php-file-iterator/compare/3.0.2...3.0.3
 [3.0.2]: https://github.com/sebastianbergmann/php-file-iterator/compare/3.0.1...3.0.2
 [3.0.1]: https://github.com/sebastianbergmann/php-file-iterator/compare/3.0.0...3.0.1
-[3.0.0]: https://github.com/sebastianbergmann/php-file-iterator/compare/2.0.2...3.0.0
+[3.0.0]: https://github.com/sebastianbergmann/php-file-iterator/compare/2.0.5...3.0.0
+[2.0.5]: https://github.com/sebastianbergmann/php-file-iterator/compare/2.0.4...2.0.5
 [2.0.4]: https://github.com/sebastianbergmann/php-file-iterator/compare/2.0.3...2.0.4
 [2.0.3]: https://github.com/sebastianbergmann/php-file-iterator/compare/2.0.2...2.0.3
 [2.0.2]: https://github.com/sebastianbergmann/php-file-iterator/compare/2.0.1...2.0.2
 [2.0.1]: https://github.com/sebastianbergmann/php-file-iterator/compare/2.0.0...2.0.1
-[2.0.0]: https://github.com/sebastianbergmann/php-file-iterator/compare/1.4...2.0.0
+[2.0.0]: https://github.com/sebastianbergmann/php-file-iterator/compare/1.4.5...2.0.0
 [1.4.5]: https://github.com/sebastianbergmann/php-file-iterator/compare/1.4.4...1.4.5
 [1.4.4]: https://github.com/sebastianbergmann/php-file-iterator/compare/1.4.3...1.4.4
 [1.4.3]: https://github.com/sebastianbergmann/php-file-iterator/compare/1.4.2...1.4.3
