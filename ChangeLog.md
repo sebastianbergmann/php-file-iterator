@@ -2,11 +2,11 @@
 
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [4.0.0] - 2021-MM-DD
+## [4.0.0] - 2022-MM-DD
 
 ### Removed
 
-* This component is no longer supported on PHP 7.3 and PHP 7.4
+* This component is no longer supported on PHP 7.3, PHP 7.4 and PHP 8.0
 
 ## [3.0.6] - 2021-12-02
 
