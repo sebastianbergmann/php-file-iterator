@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.x-dev@">
+<files psalm-version="dev-master@">
   <file src="src/Iterator.php">
+    <MissingTemplateParam occurrences="1">
+      <code>Iterator</code>
+    </MissingTemplateParam>
     <PossiblyFalseArgument occurrences="1">
       <code>$this-&gt;basePath</code>
     </PossiblyFalseArgument>
-    <UndefinedInterfaceMethod occurrences="1">
-      <code>current</code>
-    </UndefinedInterfaceMethod>
   </file>
 </files>
