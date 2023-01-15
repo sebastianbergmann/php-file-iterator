@@ -20,15 +20,8 @@ use PHPUnit\Framework\TestCase;
  */
 final class FactoryTest extends TestCase
 {
-    /**
-     * @var string
-     */
-    private $root;
-
-    /**
-     * @var Factory
-     */
-    private $factory;
+    private string $root;
+    private Factory $factory;
 
     protected function setUp(): void
     {
