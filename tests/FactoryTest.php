@@ -11,13 +11,12 @@ namespace SebastianBergmann\FileIterator;
 
 use function count;
 use function iterator_to_array;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \SebastianBergmann\FileIterator\Factory
- *
- * @uses \SebastianBergmann\FileIterator\Iterator
- */
+#[CoversClass(Factory::class)]
+#[UsesClass(Iterator::class)]
 final class FactoryTest extends TestCase
 {
     private string $root;
