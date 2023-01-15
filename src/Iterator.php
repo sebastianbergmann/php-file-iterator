@@ -23,13 +23,9 @@ final class Iterator extends FilterIterator
     public const PREFIX = 0;
 
     public const SUFFIX = 1;
-
     private string|false $basePath;
-
     private array $suffixes;
-
     private array $prefixes;
-
     private array $exclude;
 
     public function __construct(string $basePath, \Iterator $iterator, array $suffixes = [], array $prefixes = [], array $exclude = [])
