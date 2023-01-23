@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="dev-master@">
+<files psalm-version="5.5.0@b63061a27f2683ec0f3509012bb22daab3b65b61">
+  <file src="src/Facade.php">
+    <InvalidArrayOffset>
+      <code>$_files[$i + 1][$j]</code>
+      <code>$_files[$i][$j]</code>
+      <code>$_files[0][$j]</code>
+    </InvalidArrayOffset>
+  </file>
   <file src="src/Iterator.php">
-    <MissingTemplateParam occurrences="1">
+    <MissingTemplateParam>
       <code>Iterator</code>
     </MissingTemplateParam>
-    <PossiblyFalseArgument occurrences="1">
+    <PossiblyFalseArgument>
       <code>$this-&gt;basePath</code>
     </PossiblyFalseArgument>
   </file>
