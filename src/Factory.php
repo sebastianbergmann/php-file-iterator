@@ -33,8 +33,8 @@ final class Factory
             $paths = [$paths];
         }
 
-        $paths   = $this->pathsAfterResolvingWildcards($paths);
-        $exclude = $this->pathsAfterResolvingWildcards($exclude);
+        $paths   = $this->resolveWildcards($paths);
+        $exclude = $this->resolveWildcards($exclude);
 
         if (is_string($prefixes)) {
             if ($prefixes !== '') {
@@ -73,7 +73,7 @@ final class Factory
         return $iterator;
     }
 
-    private function pathsAfterResolvingWildcards(array $paths): array
+    private function resolveWildcards(array $paths): array
     {
         $_paths = [[]];
 
