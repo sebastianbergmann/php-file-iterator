@@ -81,7 +81,9 @@ final class Factory
             if ($locals = glob($path, GLOB_ONLYDIR)) {
                 $_paths[] = array_map('\realpath', $locals);
             } else {
+                // @codeCoverageIgnoreStart
                 $_paths[] = [realpath($path)];
+                // @codeCoverageIgnoreEnd
             }
         }
 

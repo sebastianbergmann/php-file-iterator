@@ -48,7 +48,9 @@ final class Iterator extends FilterIterator
         $realPath = $current->getRealPath();
 
         if ($realPath === false) {
+            // @codeCoverageIgnoreStart
             return false;
+            // @codeCoverageIgnoreEnd
         }
 
         return $this->acceptPath($realPath) &&
