@@ -13,6 +13,7 @@ use const GLOB_ONLYDIR;
 use function array_filter;
 use function array_map;
 use function array_merge;
+use function array_values;
 use function glob;
 use function is_dir;
 use function is_string;
@@ -27,6 +28,12 @@ use RecursiveIteratorIterator;
  */
 final class Factory
 {
+    /**
+     * @psalm-param list<string>|string $paths
+     * @psalm-param list<string>|string $suffixes
+     * @psalm-param list<string>|string $prefixes
+     * @psalm-param list<string> $exclude
+     */
     public function getFileIterator(array|string $paths, array|string $suffixes = '', array|string $prefixes = '', array $exclude = []): AppendIterator
     {
         if (is_string($paths)) {
@@ -73,6 +80,11 @@ final class Factory
         return $iterator;
     }
 
+    /**
+     * @psalm-param list<string> $paths
+     *
+     * @psalm-return list<string>
+     */
     private function resolveWildcards(array $paths): array
     {
         $_paths = [[]];
@@ -87,6 +99,6 @@ final class Factory
             }
         }
 
-        return array_filter(array_merge(...$_paths));
+        return array_values(array_filter(array_merge(...$_paths)));
     }
 }

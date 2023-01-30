@@ -11,12 +11,15 @@ namespace SebastianBergmann\FileIterator;
 
 use function array_filter;
 use function array_map;
+use function array_values;
+use function assert;
 use function preg_match;
 use function realpath;
 use function str_ends_with;
 use function str_replace;
 use function str_starts_with;
 use FilterIterator;
+use SplFileInfo;
 
 /**
  * @internal This class is not covered by the backward compatibility promise for phpunit/php-file-iterator
@@ -27,23 +30,43 @@ final class Iterator extends FilterIterator
 
     public const SUFFIX = 1;
     private string|false $basePath;
+
+    /**
+     * @psalm-var list<string>
+     */
     private array $suffixes;
+
+    /**
+     * @psalm-var list<string>
+     */
     private array $prefixes;
+
+    /**
+     * @psalm-var list<string>
+     */
     private array $exclude;
 
+    /**
+     * @psalm-param list<string> $suffixes
+     * @psalm-param list<string> $prefixes
+     * @psalm-param list<string> $exclude
+     */
     public function __construct(string $basePath, \Iterator $iterator, array $suffixes = [], array $prefixes = [], array $exclude = [])
     {
         $this->basePath = realpath($basePath);
         $this->prefixes = $prefixes;
         $this->suffixes = $suffixes;
-        $this->exclude  = array_filter(array_map('realpath', $exclude));
+        $this->exclude  = array_values(array_filter(array_map('realpath', $exclude)));
 
         parent::__construct($iterator);
     }
 
     public function accept(): bool
     {
-        $current  = $this->getInnerIterator()->current();
+        $current = $this->getInnerIterator()->current();
+
+        assert($current instanceof SplFileInfo);
+
         $filename = $current->getFilename();
         $realPath = $current->getRealPath();
 
@@ -61,7 +84,7 @@ final class Iterator extends FilterIterator
     private function acceptPath(string $path): bool
     {
         // Filter files in hidden directories by checking path that is relative to the base path.
-        if (preg_match('=/\.[^/]*/=', str_replace($this->basePath, '', $path))) {
+        if (preg_match('=/\.[^/]*/=', str_replace((string) $this->basePath, '', $path))) {
             return false;
         }
 
@@ -84,6 +107,9 @@ final class Iterator extends FilterIterator
         return $this->acceptSubString($filename, $this->suffixes, self::SUFFIX);
     }
 
+    /**
+     * @psalm-param list<string> $subStrings
+     */
     private function acceptSubString(string $filename, array $subStrings, int $type): bool
     {
         if (empty($subStrings)) {

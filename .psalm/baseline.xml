@@ -4,8 +4,5 @@
     <MissingTemplateParam>
       <code>Iterator</code>
     </MissingTemplateParam>
-    <PossiblyFalseArgument>
-      <code>$this-&gt;basePath</code>
-    </PossiblyFalseArgument>
   </file>
 </files>
