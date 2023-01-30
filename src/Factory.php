@@ -18,6 +18,7 @@ use function is_dir;
 use function is_string;
 use function realpath;
 use AppendIterator;
+use FilesystemIterator;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 
@@ -56,7 +57,7 @@ final class Factory
                     new Iterator(
                         $path,
                         new RecursiveIteratorIterator(
-                            new RecursiveDirectoryIterator($path, RecursiveDirectoryIterator::FOLLOW_SYMLINKS | RecursiveDirectoryIterator::SKIP_DOTS)
+                            new RecursiveDirectoryIterator($path, FilesystemIterator::FOLLOW_SYMLINKS | FilesystemIterator::SKIP_DOTS)
                         ),
                         $suffixes,
                         $prefixes,
