@@ -18,10 +18,13 @@ use function realpath;
 use function str_ends_with;
 use function str_replace;
 use function str_starts_with;
+use AppendIterator;
 use FilterIterator;
 use SplFileInfo;
 
 /**
+ * @template-extends FilterIterator<int, string, AppendIterator>
+ *
  * @internal This class is not covered by the backward compatibility promise for phpunit/php-file-iterator
  */
 final class Iterator extends FilterIterator
