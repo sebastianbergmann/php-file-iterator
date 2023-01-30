@@ -10,13 +10,18 @@
 namespace SebastianBergmann\FileIterator;
 
 use function array_unique;
+use function assert;
 use function is_file;
 use function is_string;
 use function realpath;
 use function sort;
+use SplFileInfo;
 
 final class Facade
 {
+    /**
+     * @psalm-return list<string>
+     */
     public function getFilesAsArray(array|string $paths, array|string $suffixes = '', array|string $prefixes = '', array $exclude = []): array
     {
         if (is_string($paths)) {
@@ -28,6 +33,8 @@ final class Facade
         $files = [];
 
         foreach ($iterator as $file) {
+            assert($file instanceof SplFileInfo);
+
             $file = $file->getRealPath();
 
             if ($file) {
@@ -37,7 +44,11 @@ final class Facade
 
         foreach ($paths as $path) {
             if (is_file($path)) {
-                $files[] = realpath($path);
+                $realpath = realpath($path);
+
+                assert($realpath !== false);
+
+                $files[] = $realpath;
             }
         }
 

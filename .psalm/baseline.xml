@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.5.0@b63061a27f2683ec0f3509012bb22daab3b65b61">
-  <file src="src/Facade.php">
-    <InvalidArrayOffset>
-      <code>$_files[$i + 1][$j]</code>
-      <code>$_files[$i][$j]</code>
-      <code>$_files[0][$j]</code>
-    </InvalidArrayOffset>
-  </file>
+<files psalm-version="5.6.0@e784128902dfe01d489c4123d69918a9f3c1eac5">
   <file src="src/Iterator.php">
     <MissingTemplateParam>
       <code>Iterator</code>
