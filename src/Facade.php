@@ -9,11 +9,7 @@
  */
 namespace SebastianBergmann\FileIterator;
 
-use const DIRECTORY_SEPARATOR;
 use function array_unique;
-use function count;
-use function dirname;
-use function explode;
 use function is_file;
 use function is_string;
 use function realpath;
@@ -21,7 +17,7 @@ use function sort;
 
 final class Facade
 {
-    public function getFilesAsArray(array|string $paths, array|string $suffixes = '', array|string $prefixes = '', array $exclude = [], bool $commonPath = false): array
+    public function getFilesAsArray(array|string $paths, array|string $suffixes = '', array|string $prefixes = '', array $exclude = []): array
     {
         if (is_string($paths)) {
             $paths = [$paths];
@@ -46,65 +42,9 @@ final class Facade
         }
 
         $files = array_unique($files);
+
         sort($files);
 
-        if ($commonPath) {
-            return [
-                'commonPath' => $this->commonPath($files),
-                'files'      => $files,
-            ];
-        }
-
         return $files;
-    }
-
-    private function commonPath(array $files): string
-    {
-        $count = count($files);
-
-        if ($count === 0) {
-            return '';
-        }
-
-        if ($count === 1) {
-            return dirname($files[0]) . DIRECTORY_SEPARATOR;
-        }
-
-        $_files = [];
-
-        foreach ($files as $file) {
-            $_files[] = $_fileParts = explode(DIRECTORY_SEPARATOR, $file, 2);
-
-            if (empty($_fileParts[0])) {
-                $_fileParts[0] = DIRECTORY_SEPARATOR;
-            }
-        }
-
-        $common = '';
-        $done   = false;
-        $j      = 0;
-        $count--;
-
-        while (!$done) {
-            for ($i = 0; $i < $count; $i++) {
-                if ($_files[$i][$j] !== $_files[$i + 1][$j]) {
-                    $done = true;
-
-                    break;
-                }
-            }
-
-            if (!$done) {
-                $common .= $_files[0][$j];
-
-                if ($j > 0) {
-                    $common .= DIRECTORY_SEPARATOR;
-                }
-            }
-
-            $j++;
-        }
-
-        return DIRECTORY_SEPARATOR . $common;
     }
 }
