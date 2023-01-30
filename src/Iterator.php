@@ -85,17 +85,13 @@ final class Iterator extends FilterIterator
             return true;
         }
 
-        $matched = false;
-
         foreach ($subStrings as $string) {
             if (($type === self::PREFIX && str_starts_with($filename, $string)) ||
                 ($type === self::SUFFIX && str_ends_with($filename, $string))) {
-                $matched = true;
-
-                break;
+                return true;
             }
         }
 
-        return $matched;
+        return false;
     }
 }
