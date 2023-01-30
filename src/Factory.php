@@ -22,6 +22,9 @@ use FilesystemIterator;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 
+/**
+ * @internal This class is not covered by the backward compatibility promise for phpunit/php-file-iterator
+ */
 final class Factory
 {
     public function getFileIterator(array|string $paths, array|string $suffixes = '', array|string $prefixes = '', array $exclude = []): AppendIterator

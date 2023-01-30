@@ -18,6 +18,9 @@ use function str_replace;
 use function str_starts_with;
 use FilterIterator;
 
+/**
+ * @internal This class is not covered by the backward compatibility promise for phpunit/php-file-iterator
+ */
 final class Iterator extends FilterIterator
 {
     public const PREFIX = 0;

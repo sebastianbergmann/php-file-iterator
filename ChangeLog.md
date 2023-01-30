@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file. This projec
 ### Removed
 
 * The optional `$commonPath` parameter of `SebastianBergmann\FileIterator\Facade` as well as the functionality it controlled has been removed
+* The `SebastianBergmann\FileIterator\Factory` and `SebastianBergmann\FileIterator\Iterator` classes are now marked `@internal`
 * This component is no longer supported on PHP 7.3, PHP 7.4 and PHP 8.0
 
 ## [3.0.6] - 2021-12-02
