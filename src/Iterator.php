@@ -9,9 +9,6 @@
  */
 namespace SebastianBergmann\FileIterator;
 
-use function array_filter;
-use function array_map;
-use function array_values;
 use function assert;
 use function preg_match;
 use function realpath;
@@ -45,21 +42,14 @@ final class Iterator extends FilterIterator
     private array $prefixes;
 
     /**
-     * @psalm-var list<string>
-     */
-    private array $exclude;
-
-    /**
      * @psalm-param list<string> $suffixes
      * @psalm-param list<string> $prefixes
-     * @psalm-param list<string> $exclude
      */
-    public function __construct(string $basePath, \Iterator $iterator, array $suffixes = [], array $prefixes = [], array $exclude = [])
+    public function __construct(string $basePath, \Iterator $iterator, array $suffixes = [], array $prefixes = [])
     {
         $this->basePath = realpath($basePath);
         $this->prefixes = $prefixes;
         $this->suffixes = $suffixes;
-        $this->exclude  = array_values(array_filter(array_map('realpath', $exclude)));
 
         parent::__construct($iterator);
     }
@@ -89,12 +79,6 @@ final class Iterator extends FilterIterator
         // Filter files in hidden directories by checking path that is relative to the base path.
         if (preg_match('=/\.[^/]*/=', str_replace((string) $this->basePath, '', $path))) {
             return false;
-        }
-
-        foreach ($this->exclude as $exclude) {
-            if (str_starts_with($path, $exclude)) {
-                return false;
-            }
         }
 
         return true;

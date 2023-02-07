@@ -15,6 +15,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(ExcludeIterator::class)]
 #[CoversClass(Facade::class)]
 #[CoversClass(Factory::class)]
 #[CoversClass(Iterator::class)]

@@ -67,11 +67,13 @@ final class Factory
                     new Iterator(
                         $path,
                         new RecursiveIteratorIterator(
-                            new RecursiveDirectoryIterator($path, FilesystemIterator::FOLLOW_SYMLINKS | FilesystemIterator::SKIP_DOTS)
+                            new ExcludeIterator(
+                                new RecursiveDirectoryIterator($path, FilesystemIterator::FOLLOW_SYMLINKS | FilesystemIterator::SKIP_DOTS),
+                                $exclude,
+                            ),
                         ),
                         $suffixes,
                         $prefixes,
-                        $exclude
                     )
                 );
             }
