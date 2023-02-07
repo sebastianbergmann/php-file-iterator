@@ -11,8 +11,8 @@ namespace SebastianBergmann\FileIterator;
 
 use function assert;
 use function str_starts_with;
+use RecursiveDirectoryIterator;
 use RecursiveFilterIterator;
-use RecursiveIterator;
 use SplFileInfo;
 
 /**
@@ -28,7 +28,7 @@ final class ExcludeIterator extends RecursiveFilterIterator
     /**
      * @psalm-param list<string> $exclude
      */
-    public function __construct(RecursiveIterator $iterator, array $exclude)
+    public function __construct(RecursiveDirectoryIterator $iterator, array $exclude)
     {
         parent::__construct($iterator);
 
@@ -63,5 +63,14 @@ final class ExcludeIterator extends RecursiveFilterIterator
             $this->getInnerIterator()->getChildren(),
             $this->exclude
         );
+    }
+
+    public function getInnerIterator(): RecursiveDirectoryIterator
+    {
+        $innerIterator = parent::getInnerIterator();
+
+        assert($innerIterator instanceof RecursiveDirectoryIterator);
+
+        return $innerIterator;
     }
 }
