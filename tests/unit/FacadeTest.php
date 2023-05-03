@@ -10,6 +10,8 @@
 namespace SebastianBergmann\FileIterator;
 
 use function realpath;
+use function symlink;
+use function unlink;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Small;
@@ -24,7 +26,7 @@ final class FacadeTest extends TestCase
 {
     public static function provider(): array
     {
-        $fixtureDirectoryRealpath = realpath(__DIR__ . '/../fixture');
+        $fixtureDirectoryRealpath = self::fixtureDirectoryRealpath();
 
         return [
             'filter prefix: no, filter suffix: no, excludes: none' => [
@@ -119,6 +121,21 @@ final class FacadeTest extends TestCase
         ];
     }
 
+    protected function setUp(): void
+    {
+        $fixtureDirectoryRealpath = self::fixtureDirectoryRealpath();
+
+        symlink(
+            $fixtureDirectoryRealpath . '/a/DoesNotExist.php',
+            $fixtureDirectoryRealpath . '/a/DoesNotExist.php',
+        );
+    }
+
+    protected function tearDown(): void
+    {
+        unlink(self::fixtureDirectoryRealpath() . '/a/DoesNotExist.php');
+    }
+
     #[DataProvider('provider')]
     public function testSomething(array $expected, array|string $paths, array|string $suffixes, array|string $prefixes, array $exclude): void
     {
@@ -126,5 +143,10 @@ final class FacadeTest extends TestCase
             $expected,
             (new Facade)->getFilesAsArray($paths, $suffixes, $prefixes, $exclude)
         );
+    }
+
+    private static function fixtureDirectoryRealpath(): string|false
+    {
+        return realpath(__DIR__ . '/../fixture');
     }
 }
