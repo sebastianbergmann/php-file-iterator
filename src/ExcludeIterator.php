@@ -10,6 +10,7 @@
 namespace SebastianBergmann\FileIterator;
 
 use function assert;
+use function is_string;
 use function str_starts_with;
 use RecursiveDirectoryIterator;
 use RecursiveFilterIterator;
@@ -42,6 +43,10 @@ final class ExcludeIterator extends RecursiveFilterIterator
         assert($current instanceof SplFileInfo);
 
         $path = $current->getRealPath();
+
+        if (!is_string($path)) {
+            return false;
+        }
 
         foreach ($this->exclude as $exclude) {
             if (str_starts_with($path, $exclude)) {
