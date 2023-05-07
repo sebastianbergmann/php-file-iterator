@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [4.0.2] - 2023-05-07
+
+### Fixed
+
+* [#80](https://github.com/sebastianbergmann/php-file-iterator/pull/80): Ignore unresolvable symbolic link
+
 ## [4.0.1] - 2023-02-10
 
 ### Fixed
@@ -138,6 +144,7 @@ No changes
 
 * [#23](https://github.com/sebastianbergmann/php-file-iterator/pull/23): Added support for wildcards (glob) in exclude
 
+[4.0.2]: https://github.com/sebastianbergmann/php-file-iterator/compare/4.0.1...4.0.2
 [4.0.1]: https://github.com/sebastianbergmann/php-file-iterator/compare/4.0.0...4.0.1
 [4.0.0]: https://github.com/sebastianbergmann/php-file-iterator/compare/3.0.6...4.0.0
 [3.0.6]: https://github.com/sebastianbergmann/php-file-iterator/compare/3.0.5...3.0.6
