@@ -6,6 +6,7 @@
     resolveFromConfigFile="false"
     errorBaseline=".psalm/baseline.xml"
     findUnusedBaselineEntry="true"
+    findUnusedCode="false"
 >
     <projectFiles>
         <directory name="src" />
