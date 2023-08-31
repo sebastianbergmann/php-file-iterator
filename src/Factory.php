@@ -74,7 +74,7 @@ final class Factory
                         ),
                         $suffixes,
                         $prefixes,
-                    )
+                    ),
                 );
             }
         }

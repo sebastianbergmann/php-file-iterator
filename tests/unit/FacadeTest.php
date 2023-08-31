@@ -141,11 +141,11 @@ final class FacadeTest extends TestCase
     {
         $this->assertSame(
             $expected,
-            (new Facade)->getFilesAsArray($paths, $suffixes, $prefixes, $exclude)
+            (new Facade)->getFilesAsArray($paths, $suffixes, $prefixes, $exclude),
         );
     }
 
-    private static function fixtureDirectoryRealpath(): string|false
+    private static function fixtureDirectoryRealpath(): false|string
     {
         return realpath(__DIR__ . '/../fixture');
     }

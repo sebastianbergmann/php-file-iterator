@@ -65,7 +65,7 @@ final class ExcludeIterator extends RecursiveFilterIterator
     {
         return new self(
             $this->getInnerIterator()->getChildren(),
-            $this->exclude
+            $this->exclude,
         );
     }
 
