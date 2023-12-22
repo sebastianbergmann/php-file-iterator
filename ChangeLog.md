@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [5.0.0] - 2024-02-02
+
+### Removed
+
+* This component is no longer supported on PHP 8.1
+
 ## [4.1.0] - 2023-08-31
 
 ### Added
@@ -150,6 +156,7 @@ No changes
 
 * [#23](https://github.com/sebastianbergmann/php-file-iterator/pull/23): Added support for wildcards (glob) in exclude
 
+[5.0.0]: https://github.com/sebastianbergmann/php-file-iterator/compare/4.1...main
 [4.1.0]: https://github.com/sebastianbergmann/php-file-iterator/compare/4.0.2...4.1.0
 [4.0.2]: https://github.com/sebastianbergmann/php-file-iterator/compare/4.0.1...4.0.2
 [4.0.1]: https://github.com/sebastianbergmann/php-file-iterator/compare/4.0.0...4.0.1
