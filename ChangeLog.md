@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.0.6] - 2024-03-01
+
+* No code changes, only updated `.gitattributes` to not export non-essential files.
+
 ## [2.0.5] - 2021-12-02
 
 ### Changed
@@ -82,6 +86,7 @@ No changes
 
 * [Added support for wildcards (glob) in exclude](https://github.com/sebastianbergmann/php-file-iterator/pull/23)
 
+[2.0.6]: https://github.com/sebastianbergmann/php-file-iterator/compare/2.0.5...2.0.6
 [2.0.5]: https://github.com/sebastianbergmann/php-file-iterator/compare/2.0.4...2.0.5
 [2.0.4]: https://github.com/sebastianbergmann/php-file-iterator/compare/2.0.3...2.0.4
 [2.0.3]: https://github.com/sebastianbergmann/php-file-iterator/compare/2.0.2...2.0.3
