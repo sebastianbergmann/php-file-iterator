@@ -24,6 +24,9 @@ use PHPUnit\Framework\TestCase;
 #[Small]
 final class FacadeTest extends TestCase
 {
+    /**
+     * @return non-empty-array<non-empty-string, array{0: list<non-empty-string>, 1: list<non-empty-string>|non-empty-string, 2: list<non-empty-string>|string, 3: list<non-empty-string>|string, 4: list<non-empty-string>}>
+     */
     public static function provider(): array
     {
         $fixtureDirectoryRealpath = self::fixtureDirectoryRealpath();
@@ -136,6 +139,13 @@ final class FacadeTest extends TestCase
         unlink(self::fixtureDirectoryRealpath() . '/a/DoesNotExist.php');
     }
 
+    /**
+     * @param list<non-empty-string>                  $expected
+     * @param list<non-empty-string>|non-empty-string $paths
+     * @param list<non-empty-string>|string           $suffixes
+     * @param list<non-empty-string>|string           $prefixes
+     * @param list<non-empty-string>                  $exclude
+     */
     #[DataProvider('provider')]
     public function testSomething(array $expected, array|string $paths, array|string $suffixes, array|string $prefixes, array $exclude): void
     {
