@@ -31,18 +31,18 @@ final class Iterator extends FilterIterator
     private false|string $basePath;
 
     /**
-     * @psalm-var list<string>
+     * @var list<string>
      */
     private array $suffixes;
 
     /**
-     * @psalm-var list<string>
+     * @var list<string>
      */
     private array $prefixes;
 
     /**
-     * @psalm-param list<string> $suffixes
-     * @psalm-param list<string> $prefixes
+     * @param list<string> $suffixes
+     * @param list<string> $prefixes
      */
     public function __construct(string $basePath, \Iterator $iterator, array $suffixes = [], array $prefixes = [])
     {
@@ -94,7 +94,7 @@ final class Iterator extends FilterIterator
     }
 
     /**
-     * @psalm-param list<string> $subStrings
+     * @param list<string> $subStrings
      */
     private function acceptSubString(string $filename, array $subStrings, int $type): bool
     {
