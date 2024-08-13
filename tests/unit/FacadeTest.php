@@ -7,6 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace SebastianBergmann\FileIterator;
 
 use function realpath;
@@ -41,11 +42,15 @@ final class FacadeTest extends TestCase
                     $fixtureDirectoryRealpath . '/a/c/d/Prefix.php',
                     $fixtureDirectoryRealpath . '/a/c/d/PrefixSuffix.php',
                     $fixtureDirectoryRealpath . '/a/c/d/Suffix.php',
+                    $fixtureDirectoryRealpath . '/a/c/d/i/PrefixSuffix.php',
                     $fixtureDirectoryRealpath . '/b/PrefixSuffix.php',
                     $fixtureDirectoryRealpath . '/b/e/PrefixSuffix.php',
                     $fixtureDirectoryRealpath . '/b/e/g/PrefixSuffix.php',
+                    $fixtureDirectoryRealpath . '/b/e/g/i/PrefixSuffix.php',
+                    $fixtureDirectoryRealpath . '/b/e/i/PrefixSuffix.php',
                     $fixtureDirectoryRealpath . '/b/f/PrefixSuffix.php',
                     $fixtureDirectoryRealpath . '/b/f/h/PrefixSuffix.php',
+                    $fixtureDirectoryRealpath . '/b/f/h/i/PrefixSuffix.php',
                 ],
                 __DIR__ . '/../fixture',
                 '',
@@ -59,6 +64,8 @@ final class FacadeTest extends TestCase
                     $fixtureDirectoryRealpath . '/b/PrefixSuffix.php',
                     $fixtureDirectoryRealpath . '/b/e/PrefixSuffix.php',
                     $fixtureDirectoryRealpath . '/b/e/g/PrefixSuffix.php',
+                    $fixtureDirectoryRealpath . '/b/e/g/i/PrefixSuffix.php',
+                    $fixtureDirectoryRealpath . '/b/e/i/PrefixSuffix.php',
                 ],
                 __DIR__ . '/../fixture',
                 '',
@@ -76,11 +83,15 @@ final class FacadeTest extends TestCase
                     $fixtureDirectoryRealpath . '/a/c/PrefixSuffix.php',
                     $fixtureDirectoryRealpath . '/a/c/d/Prefix.php',
                     $fixtureDirectoryRealpath . '/a/c/d/PrefixSuffix.php',
+                    $fixtureDirectoryRealpath . '/a/c/d/i/PrefixSuffix.php',
                     $fixtureDirectoryRealpath . '/b/PrefixSuffix.php',
                     $fixtureDirectoryRealpath . '/b/e/PrefixSuffix.php',
                     $fixtureDirectoryRealpath . '/b/e/g/PrefixSuffix.php',
+                    $fixtureDirectoryRealpath . '/b/e/g/i/PrefixSuffix.php',
+                    $fixtureDirectoryRealpath . '/b/e/i/PrefixSuffix.php',
                     $fixtureDirectoryRealpath . '/b/f/PrefixSuffix.php',
                     $fixtureDirectoryRealpath . '/b/f/h/PrefixSuffix.php',
+                    $fixtureDirectoryRealpath . '/b/f/h/i/PrefixSuffix.php',
                 ],
                 __DIR__ . '/../fixture',
                 '',
@@ -95,11 +106,15 @@ final class FacadeTest extends TestCase
                     $fixtureDirectoryRealpath . '/a/c/Suffix.php',
                     $fixtureDirectoryRealpath . '/a/c/d/PrefixSuffix.php',
                     $fixtureDirectoryRealpath . '/a/c/d/Suffix.php',
+                    $fixtureDirectoryRealpath . '/a/c/d/i/PrefixSuffix.php',
                     $fixtureDirectoryRealpath . '/b/PrefixSuffix.php',
                     $fixtureDirectoryRealpath . '/b/e/PrefixSuffix.php',
                     $fixtureDirectoryRealpath . '/b/e/g/PrefixSuffix.php',
+                    $fixtureDirectoryRealpath . '/b/e/g/i/PrefixSuffix.php',
+                    $fixtureDirectoryRealpath . '/b/e/i/PrefixSuffix.php',
                     $fixtureDirectoryRealpath . '/b/f/PrefixSuffix.php',
                     $fixtureDirectoryRealpath . '/b/f/h/PrefixSuffix.php',
+                    $fixtureDirectoryRealpath . '/b/f/h/i/PrefixSuffix.php',
                 ],
                 __DIR__ . '/../fixture',
                 'Suffix.php',
@@ -115,11 +130,25 @@ final class FacadeTest extends TestCase
                     $fixtureDirectoryRealpath . '/a/c/d/Prefix.php',
                     $fixtureDirectoryRealpath . '/a/c/d/PrefixSuffix.php',
                     $fixtureDirectoryRealpath . '/a/c/d/Suffix.php',
+                    $fixtureDirectoryRealpath . '/a/c/d/i/PrefixSuffix.php',
                 ],
                 __DIR__ . '/../fixture/*/c',
                 '',
                 '',
                 [],
+            ],
+            'globstar, filter prefix: no, filter suffix: no, excludes: none' => [
+                [
+
+                    $fixtureDirectoryRealpath . '/a/c/d/i/PrefixSuffix.php',
+                    $fixtureDirectoryRealpath . '/b/e/g/i/PrefixSuffix.php',
+                    $fixtureDirectoryRealpath . '/b/e/i/PrefixSuffix.php',
+                    $fixtureDirectoryRealpath . '/b/f/h/i/PrefixSuffix.php',
+                ],
+                __DIR__ . '/../fixture/**/i',
+                '',
+                '',
+                []
             ],
         ];
     }
@@ -140,11 +169,11 @@ final class FacadeTest extends TestCase
     }
 
     /**
-     * @param list<non-empty-string>                  $expected
+     * @param list<non-empty-string> $expected
      * @param list<non-empty-string>|non-empty-string $paths
-     * @param list<non-empty-string>|string           $suffixes
-     * @param list<non-empty-string>|string           $prefixes
-     * @param list<non-empty-string>                  $exclude
+     * @param list<non-empty-string>|string $suffixes
+     * @param list<non-empty-string>|string $prefixes
+     * @param list<non-empty-string> $exclude
      */
     #[DataProvider('provider')]
     public function testSomething(array $expected, array|string $paths, array|string $suffixes, array|string $prefixes, array $exclude): void
