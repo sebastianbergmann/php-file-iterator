@@ -169,11 +169,11 @@ final class FacadeTest extends TestCase
     }
 
     /**
-     * @param list<non-empty-string> $expected
+     * @param list<non-empty-string>                  $expected
      * @param list<non-empty-string>|non-empty-string $paths
-     * @param list<non-empty-string>|string $suffixes
-     * @param list<non-empty-string>|string $prefixes
-     * @param list<non-empty-string> $exclude
+     * @param list<non-empty-string>|string           $suffixes
+     * @param list<non-empty-string>|string           $prefixes
+     * @param list<non-empty-string>                  $exclude
      */
     #[DataProvider('provider')]
     public function testSomething(array $expected, array|string $paths, array|string $suffixes, array|string $prefixes, array $exclude): void
