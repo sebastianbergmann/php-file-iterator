@@ -106,9 +106,8 @@ final class Factory
 
     /**
      * @see https://gist.github.com/funkjedi/3feee27d873ae2297b8e2370a7082aad
-     * @param $pattern
-     * @param $flags
-     * @return array|false
+     * @param string $pattern
+     * @return list<non-empty-string>
      */
     private function globstar(string $pattern) {
         if (stripos($pattern, '**') === false) {
