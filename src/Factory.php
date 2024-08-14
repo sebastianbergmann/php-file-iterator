@@ -133,9 +133,12 @@ final class Factory
             }
         }
 
-        $files = array_unique($files);
-        sort($files);
+        if($files !== false) {
+            $files = array_unique($files);
+            sort($files);
+            return $files;
+        }
 
-        return $files;
+        return [];
     }
 }
