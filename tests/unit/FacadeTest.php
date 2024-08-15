@@ -7,7 +7,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace SebastianBergmann\FileIterator;
 
 use function realpath;
@@ -148,7 +147,14 @@ final class FacadeTest extends TestCase
                 __DIR__ . '/../fixture/**/i',
                 '',
                 '',
-                []
+                [],
+            ],
+            'invalid path, filter prefix: no, filter suffix: no, excludes: none' => [
+                [],
+                __DIR__ . '/../fixture/**/this/path/does/not/exists',
+                '',
+                '',
+                [],
             ],
         ];
     }
