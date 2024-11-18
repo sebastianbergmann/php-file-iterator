@@ -37,6 +37,8 @@ final class Factory
      * @param list<non-empty-string>|string           $suffixes
      * @param list<non-empty-string>|string           $prefixes
      * @param list<non-empty-string>                  $exclude
+     *
+     * @phpstan-ignore missingType.generics
      */
     public function getFileIterator(array|string $paths, array|string $suffixes = '', array|string $prefixes = '', array $exclude = []): AppendIterator
     {
