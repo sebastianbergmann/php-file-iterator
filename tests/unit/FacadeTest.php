@@ -138,7 +138,6 @@ final class FacadeTest extends TestCase
             ],
             'globstar, filter prefix: no, filter suffix: no, excludes: none' => [
                 [
-
                     $fixtureDirectoryRealpath . '/a/c/d/i/PrefixSuffix.php',
                     $fixtureDirectoryRealpath . '/b/e/g/i/PrefixSuffix.php',
                     $fixtureDirectoryRealpath . '/b/e/i/PrefixSuffix.php',
