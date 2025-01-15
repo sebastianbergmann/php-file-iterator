@@ -115,7 +115,7 @@ final class Factory
      *
      * @return list<string>
      */
-    private function globstar(string $pattern)
+    private function globstar(string $pattern): array
     {
         if (stripos($pattern, '**') === false) {
             $files = glob($pattern, GLOB_ONLYDIR);
