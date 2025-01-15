@@ -127,18 +127,18 @@ final class Factory
             $patterns = [$rootPattern . $restPattern];
             $rootPattern .= '/*';
 
-            while ($dirs = glob($rootPattern, GLOB_ONLYDIR)) {
+            while ($directories = glob($rootPattern, GLOB_ONLYDIR)) {
                 $rootPattern .= '/*';
 
-                foreach ($dirs as $dir) {
-                    $patterns[] = $dir . $restPattern;
+                foreach ($directories as $directory) {
+                    $patterns[] = $directory . $restPattern;
                 }
             }
 
             $files = [];
 
-            foreach ($patterns as $pat) {
-                $files = array_merge($files, $this->globstar($pat));
+            foreach ($patterns as $_pattern) {
+                $files = array_merge($files, $this->globstar($_pattern));
             }
         }
 
