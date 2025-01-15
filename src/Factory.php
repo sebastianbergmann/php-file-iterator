@@ -144,6 +144,7 @@ final class Factory
 
         if ($files !== false) {
             $files = array_unique($files);
+
             sort($files);
 
             return $files;
