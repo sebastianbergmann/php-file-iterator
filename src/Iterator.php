@@ -24,8 +24,8 @@ use SplFileInfo;
  */
 final class Iterator extends FilterIterator
 {
-    public const PREFIX = 0;
-    public const SUFFIX = 1;
+    public const int PREFIX = 0;
+    public const int SUFFIX = 1;
     private false|string $basePath;
 
     /**
