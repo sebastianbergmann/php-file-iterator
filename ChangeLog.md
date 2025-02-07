@@ -174,7 +174,7 @@ No changes
 
 * [#23](https://github.com/sebastianbergmann/php-file-iterator/pull/23): Added support for wildcards (glob) in exclude
 
-[6.0.0]: https://github.com/sebastianbergmann/php-file-iterator/compare/5.1...main
+[6.0.0]: https://github.com/sebastianbergmann/php-file-iterator/compare/5.1...6.0.0
 [5.1.0]: https://github.com/sebastianbergmann/php-file-iterator/compare/5.0.1...5.1.0
 [5.0.1]: https://github.com/sebastianbergmann/php-file-iterator/compare/5.0.0...5.0.1
 [5.0.0]: https://github.com/sebastianbergmann/php-file-iterator/compare/4.1...5.0.0
