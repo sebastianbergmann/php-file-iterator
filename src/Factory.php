@@ -98,7 +98,9 @@ final class Factory
         $_paths = [[]];
 
         foreach ($paths as $path) {
-            if ($locals = $this->globstar($path)) {
+            $locals = $this->globstar($path);
+
+            if ($locals !== []) {
                 $_paths[] = array_map('\realpath', $locals);
             } else {
                 // @codeCoverageIgnoreStart
