@@ -94,7 +94,7 @@ final class Iterator extends FilterIterator
      */
     private function acceptSubString(string $filename, array $subStrings, int $type): bool
     {
-        if (empty($subStrings)) {
+        if ($subStrings === []) {
             return true;
         }
 
