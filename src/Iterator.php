@@ -9,6 +9,7 @@
  */
 namespace SebastianBergmann\FileIterator;
 
+use function array_any;
 use function preg_match;
 use function realpath;
 use function str_ends_with;
@@ -98,13 +99,7 @@ final class Iterator extends FilterIterator
             return true;
         }
 
-        foreach ($subStrings as $string) {
-            if (($type === self::PREFIX && str_starts_with($filename, $string)) ||
-                ($type === self::SUFFIX && str_ends_with($filename, $string))) {
-                return true;
-            }
-        }
-
-        return false;
+        return array_any($subStrings, static fn (string $string) => ($type === self::PREFIX && str_starts_with($filename, $string)) ||
+            ($type === self::SUFFIX && str_ends_with($filename, $string)));
     }
 }

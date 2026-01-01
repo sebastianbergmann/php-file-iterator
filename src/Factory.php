@@ -101,7 +101,7 @@ final class Factory
             $locals = $this->globstar($path);
 
             if ($locals !== []) {
-                $_paths[] = array_map('\realpath', $locals);
+                $_paths[] = array_map(realpath(...), $locals);
             } else {
                 // @codeCoverageIgnoreStart
                 $_paths[] = [realpath($path)];
