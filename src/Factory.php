@@ -101,8 +101,9 @@ final class Factory
 
         foreach ($paths as $path) {
             $pathEndsWithDirectorySeparator = str_ends_with($path, '/') || str_ends_with($path, DIRECTORY_SEPARATOR);
+            $locals                         = $this->globstar($path);
 
-            if ($locals = $this->globstar($path)) {
+            if ($locals !== []) {
                 $_paths[] = array_map(
                     static function (string $local) use ($pathEndsWithDirectorySeparator): string|false
                     {
