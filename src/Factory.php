@@ -9,6 +9,7 @@
  */
 namespace SebastianBergmann\FileIterator;
 
+use const DIRECTORY_SEPARATOR;
 use const GLOB_ONLYDIR;
 use function array_filter;
 use function array_map;
@@ -20,6 +21,7 @@ use function is_dir;
 use function is_string;
 use function realpath;
 use function sort;
+use function str_ends_with;
 use function stripos;
 use function substr;
 use AppendIterator;
@@ -98,11 +100,31 @@ final class Factory
         $_paths = [[]];
 
         foreach ($paths as $path) {
+            $pathEndsWithDirectorySeparator = str_ends_with($path, '/') || str_ends_with($path, DIRECTORY_SEPARATOR);
+
             if ($locals = $this->globstar($path)) {
-                $_paths[] = array_map('\realpath', $locals);
+                $_paths[] = array_map(
+                    static function (string $local) use ($pathEndsWithDirectorySeparator): string|false
+                    {
+                        $realPath = realpath($local);
+
+                        if ($realPath !== false && $pathEndsWithDirectorySeparator && is_dir($realPath)) {
+                            return $realPath . DIRECTORY_SEPARATOR;
+                        }
+
+                        return $realPath;
+                    },
+                    $locals,
+                );
             } else {
                 // @codeCoverageIgnoreStart
-                $_paths[] = [realpath($path)];
+                $realPath = realpath($path);
+
+                if ($realPath !== false && $pathEndsWithDirectorySeparator && is_dir($realPath)) {
+                    $_paths[] = [$realPath . DIRECTORY_SEPARATOR];
+                } else {
+                    $_paths[] = [$realPath];
+                }
                 // @codeCoverageIgnoreEnd
             }
         }
