@@ -42,6 +42,7 @@ final class FacadeTest extends TestCase
                     $fixtureDirectoryRealpath . '/a/c/d/PrefixSuffix.php',
                     $fixtureDirectoryRealpath . '/a/c/d/Suffix.php',
                     $fixtureDirectoryRealpath . '/a/c/d/i/PrefixSuffix.php',
+                    $fixtureDirectoryRealpath . '/aFile.php',
                     $fixtureDirectoryRealpath . '/b/PrefixSuffix.php',
                     $fixtureDirectoryRealpath . '/b/e/PrefixSuffix.php',
                     $fixtureDirectoryRealpath . '/b/e/g/PrefixSuffix.php',
@@ -60,6 +61,7 @@ final class FacadeTest extends TestCase
             'filter prefix: no, filter suffix: no, excludes: yes' => [
                 [
                     $fixtureDirectoryRealpath . '/a/PrefixSuffix.php',
+                    $fixtureDirectoryRealpath . '/aFile.php',
                     $fixtureDirectoryRealpath . '/b/PrefixSuffix.php',
                     $fixtureDirectoryRealpath . '/b/e/PrefixSuffix.php',
                     $fixtureDirectoryRealpath . '/b/e/g/PrefixSuffix.php',
@@ -72,6 +74,26 @@ final class FacadeTest extends TestCase
                 [
                     $fixtureDirectoryRealpath . '/a/c',
                     $fixtureDirectoryRealpath . '/b/f',
+                ],
+            ],
+
+            'excludes directory with trailing slash does not exclude files with matching prefix (issue #84)' => [
+                [
+                    $fixtureDirectoryRealpath . '/aFile.php',
+                    $fixtureDirectoryRealpath . '/b/PrefixSuffix.php',
+                    $fixtureDirectoryRealpath . '/b/e/PrefixSuffix.php',
+                    $fixtureDirectoryRealpath . '/b/e/g/PrefixSuffix.php',
+                    $fixtureDirectoryRealpath . '/b/e/g/i/PrefixSuffix.php',
+                    $fixtureDirectoryRealpath . '/b/e/i/PrefixSuffix.php',
+                    $fixtureDirectoryRealpath . '/b/f/PrefixSuffix.php',
+                    $fixtureDirectoryRealpath . '/b/f/h/PrefixSuffix.php',
+                    $fixtureDirectoryRealpath . '/b/f/h/i/PrefixSuffix.php',
+                ],
+                __DIR__ . '/../fixture',
+                '',
+                '',
+                [
+                    __DIR__ . '/../fixture/a/',
                 ],
             ],
 
