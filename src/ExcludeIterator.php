@@ -17,6 +17,8 @@ use RecursiveFilterIterator;
 use SplFileInfo;
 
 /**
+ * @extends RecursiveFilterIterator<string, SplFileInfo, RecursiveDirectoryIterator>
+ *
  * @internal This class is not covered by the backward compatibility promise for phpunit/php-file-iterator
  */
 final class ExcludeIterator extends RecursiveFilterIterator
