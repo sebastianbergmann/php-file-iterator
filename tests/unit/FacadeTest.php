@@ -9,6 +9,8 @@
  */
 namespace SebastianBergmann\FileIterator;
 
+use function chdir;
+use function getcwd;
 use function realpath;
 use function symlink;
 use function unlink;
@@ -177,6 +179,54 @@ final class FacadeTest extends TestCase
                 '',
                 [],
             ],
+            'path that is a file, filter prefix: no, filter suffix: no, excludes: none' => [
+                [],
+                __DIR__ . '/../fixture/aFile.php',
+                '',
+                '',
+                [],
+            ],
+            'multiple paths, filter prefix: no, filter suffix: no, excludes: none' => [
+                [
+                    $fixtureDirectoryRealpath . '/a/c/d/i/PrefixSuffix.php',
+                    $fixtureDirectoryRealpath . '/b/f/PrefixSuffix.php',
+                    $fixtureDirectoryRealpath . '/b/f/h/PrefixSuffix.php',
+                    $fixtureDirectoryRealpath . '/b/f/h/i/PrefixSuffix.php',
+                ],
+                [
+                    __DIR__ . '/../fixture/a/c/d/i',
+                    __DIR__ . '/../fixture/b/f',
+                ],
+                '',
+                '',
+                [],
+            ],
+            'multiple paths that overlap, filter prefix: no, filter suffix: no, excludes: none' => [
+                [
+                    $fixtureDirectoryRealpath . '/b/f/PrefixSuffix.php',
+                    $fixtureDirectoryRealpath . '/b/f/h/PrefixSuffix.php',
+                    $fixtureDirectoryRealpath . '/b/f/h/i/PrefixSuffix.php',
+                ],
+                [
+                    __DIR__ . '/../fixture/b/f',
+                    __DIR__ . '/../fixture/b/f/h',
+                ],
+                '',
+                '',
+                [],
+            ],
+            'filter prefix: multiple, filter suffix: multiple, excludes: none' => [
+                [
+                    $fixtureDirectoryRealpath . '/a/c/Prefix.php',
+                    $fixtureDirectoryRealpath . '/a/c/Suffix.php',
+                    $fixtureDirectoryRealpath . '/a/c/d/Prefix.php',
+                    $fixtureDirectoryRealpath . '/a/c/d/Suffix.php',
+                ],
+                __DIR__ . '/../fixture/a',
+                ['Prefix.php', 'Suffix.php'],
+                ['Prefix.', 'Suffix.'],
+                [],
+            ],
         ];
     }
 
@@ -209,6 +259,28 @@ final class FacadeTest extends TestCase
             $expected,
             (new Facade)->getFilesAsArray($paths, $suffixes, $prefixes, $exclude),
         );
+    }
+
+    public function testGlobstarCanBeUsedAtTheBeginningOfARelativePath(): void
+    {
+        $fixtureDirectoryRealpath = self::fixtureDirectoryRealpath();
+        $currentWorkingDirectory  = getcwd();
+
+        chdir((string) $fixtureDirectoryRealpath);
+
+        try {
+            $this->assertSame(
+                [
+                    $fixtureDirectoryRealpath . '/a/c/d/i/PrefixSuffix.php',
+                    $fixtureDirectoryRealpath . '/b/e/g/i/PrefixSuffix.php',
+                    $fixtureDirectoryRealpath . '/b/e/i/PrefixSuffix.php',
+                    $fixtureDirectoryRealpath . '/b/f/h/i/PrefixSuffix.php',
+                ],
+                (new Facade)->getFilesAsArray('**/i'),
+            );
+        } finally {
+            chdir((string) $currentWorkingDirectory);
+        }
     }
 
     private static function fixtureDirectoryRealpath(): false|string

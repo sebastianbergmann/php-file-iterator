@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [7.0.1] - 2026-MM-DD
+
+### Changed
+
+* Hidden directories are now pruned from the traversal instead of being traversed only for their contents to be discarded
+* Filtering by prefix and suffix no longer resolves the real path of each file
+
+### Fixed
+
+* Files in hidden directories were not filtered on Windows because only `/` was recognized as a directory separator
+* A "Globstar" pattern that begins with `**` was not resolved correctly
+
 ## [7.0.0] - 2026-02-06
 
 ### Removed
@@ -192,6 +204,7 @@ No changes
 
 * [#23](https://github.com/sebastianbergmann/php-file-iterator/pull/23): Added support for wildcards (glob) in exclude
 
+[7.0.1]: https://github.com/sebastianbergmann/php-file-iterator/compare/7.0.0...main
 [7.0.0]: https://github.com/sebastianbergmann/php-file-iterator/compare/6.0...7.0.0
 [6.0.1]: https://github.com/sebastianbergmann/php-file-iterator/compare/6.0.0...6.0.1
 [6.0.0]: https://github.com/sebastianbergmann/php-file-iterator/compare/5.1...6.0.0
