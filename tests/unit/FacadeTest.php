@@ -79,6 +79,26 @@ final class FacadeTest extends TestCase
                 ],
             ],
 
+            'excludes directory does not exclude files with matching prefix' => [
+                [
+                    $fixtureDirectoryRealpath . '/aFile.php',
+                    $fixtureDirectoryRealpath . '/b/PrefixSuffix.php',
+                    $fixtureDirectoryRealpath . '/b/e/PrefixSuffix.php',
+                    $fixtureDirectoryRealpath . '/b/e/g/PrefixSuffix.php',
+                    $fixtureDirectoryRealpath . '/b/e/g/i/PrefixSuffix.php',
+                    $fixtureDirectoryRealpath . '/b/e/i/PrefixSuffix.php',
+                    $fixtureDirectoryRealpath . '/b/f/PrefixSuffix.php',
+                    $fixtureDirectoryRealpath . '/b/f/h/PrefixSuffix.php',
+                    $fixtureDirectoryRealpath . '/b/f/h/i/PrefixSuffix.php',
+                ],
+                __DIR__ . '/../fixture',
+                '',
+                '',
+                [
+                    $fixtureDirectoryRealpath . '/a',
+                ],
+            ],
+
             'excludes directory with trailing slash does not exclude files with matching prefix (issue #84)' => [
                 [
                     $fixtureDirectoryRealpath . '/aFile.php',

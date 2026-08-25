@@ -11,8 +11,10 @@ namespace SebastianBergmann\FileIterator;
 
 use const DIRECTORY_SEPARATOR;
 use function array_all;
+use function array_map;
 use function assert;
 use function preg_match;
+use function rtrim;
 use function str_starts_with;
 use function strlen;
 use function substr;
@@ -52,7 +54,11 @@ final class ExcludeIterator extends RecursiveFilterIterator
         parent::__construct($iterator);
 
         $this->basePath = $basePath;
-        $this->exclude  = $exclude;
+
+        $this->exclude = array_map(
+            static fn (string $path): string => rtrim($path, '/' . DIRECTORY_SEPARATOR),
+            $exclude,
+        );
     }
 
     public function accept(): bool
@@ -67,7 +73,7 @@ final class ExcludeIterator extends RecursiveFilterIterator
             return false;
         }
 
-        if (!array_all($this->exclude, static fn (string $exclude) => !str_starts_with($path, $exclude))) {
+        if (!array_all($this->exclude, static fn (string $exclude) => $path !== $exclude && !str_starts_with($path, $exclude . DIRECTORY_SEPARATOR))) {
             return false;
         }
 
