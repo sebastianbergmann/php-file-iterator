@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file. This projec
 ### Fixed
 
 * [#162](https://github.com/sebastianbergmann/php-file-iterator/pull/162): Do not abort a traversal because of a directory that cannot be opened
+* [#163](https://github.com/sebastianbergmann/php-file-iterator/pull/163): Do not exclude paths that only share a prefix with an excluded directory
 
 ## [6.0.1] - 2026-02-02
 
