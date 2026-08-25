@@ -177,6 +177,13 @@ final class FacadeTest extends TestCase
                 '',
                 [],
             ],
+            'path that is a file and not a directory, filter prefix: no, filter suffix: no, excludes: none' => [
+                [],
+                __DIR__ . '/../fixture/aFile.php',
+                '',
+                '',
+                [],
+            ],
         ];
     }
 

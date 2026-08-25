@@ -150,7 +150,6 @@ final class Factory
                     $locals,
                 );
             } else {
-                // @codeCoverageIgnoreStart
                 $realPath = realpath($path);
 
                 if ($realPath !== false && $pathEndsWithDirectorySeparator && is_dir($realPath)) {
@@ -158,7 +157,6 @@ final class Factory
                 } else {
                     $_paths[] = [$realPath];
                 }
-                // @codeCoverageIgnoreEnd
             }
         }
 
