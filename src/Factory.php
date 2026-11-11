@@ -137,7 +137,7 @@ final class Factory
 
             if ($locals !== []) {
                 $_paths[] = array_map(
-                    static function (string $local) use ($pathEndsWithDirectorySeparator): string|false
+                    static function (string $local) use ($pathEndsWithDirectorySeparator): false|string
                     {
                         $realPath = realpath($local);
 
